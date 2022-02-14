@@ -33,14 +33,14 @@ export default {
             },
             {
                 pagePath: 'pages/menu/menu',
-                iconPath: 'assets/image/tabbar/home-nor.png',
-                selectedIconPath: 'assets/image/tabbar/home-sel.png',
+                iconPath: 'assets/image/tabbar/bbs-nor.png',
+                selectedIconPath: 'assets/image/tabbar/bbs-sel.png',
                 text: '菜单'
             },
             {
                 pagePath: 'pages/order/order',
-                iconPath: 'assets/image/tabbar/home-nor.png',
-                selectedIconPath: 'assets/image/tabbar/home-sel.png',
+                iconPath: 'assets/image/tabbar/shopping-nor.png',
+                selectedIconPath: 'assets/image/tabbar/shopping-sel.png',
                 text: '订单'
             },
             {

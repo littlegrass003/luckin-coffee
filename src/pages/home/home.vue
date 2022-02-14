@@ -1,11 +1,11 @@
 <template>
     <view class="home">
         <AtNoticebar marquee> 欢迎参考模板项目 </AtNoticebar>
-        <AtButton style="margin-top:20px" type="primary" :on-click="handleClick"
+        <AtButton style="margin-top: 20px" type="primary" :on-click="handleClick"
             >点我出提示</AtButton
         >
         <AtToast :is-opened="show" :text="msg" :on-close="handleClose"></AtToast>
-        <AtButton style="margin-top:10px" type="primary" :on-click="baseCardItemClick"
+        <AtButton style="margin-top: 10px" type="primary" :on-click="baseCardItemClick"
             >跳转下一页</AtButton
         >
         <view class="list" v-if="platform != 'weapp'">

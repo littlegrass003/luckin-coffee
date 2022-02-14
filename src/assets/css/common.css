@@ -1,0 +1,106 @@
+/* padding */
+.global-padding-5 {
+  padding: 5px;
+}
+
+.global-padding-10 {
+  padding: 10px;
+}
+
+.global-padding-15 {
+  padding: 15px;
+}
+
+.global-padding-20 {
+  padding: 20px;
+}
+
+.global-padding-25 {
+  padding: 25px;
+}
+
+.global-padding-30 {
+  padding: 30px;
+}
+
+/* margin */
+.global-margin-5 {
+  margin: 5px;
+}
+
+.global-margin-10 {
+  margin: 10px;
+}
+
+.global-margin-15 {
+  margin: 15px;
+}
+
+.global-margin-20 {
+  margin: 20px;
+}
+
+/* flex - row */
+.global-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* flex - column */
+.global-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.global-align-items {
+  display: flex;
+  align-items: center;
+}
+
+.global-flex-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.global-flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* postion */
+.global-position-relative {
+  position: relative;
+}
+
+.global-position-absolute {
+  position: absolute;
+}
+
+/* font-size */
+.global-fontsize-12 {
+  font-size: 12px;
+}
+
+.global-fontsize-14 {
+  font-size: 14px;
+}
+
+.global-fontsize-16 {
+  font-size: 16px;
+}
+
+.global-fontsize-18 {
+  font-size: 18px;
+}
+
+.global-fontsize-20 {
+  font-size: 20px;
+}
+
+.global-fontsize-22 {
+  font-size: 22px;
+}
+
+.global-fontsize-24 {
+  font-size: 24px;
+}

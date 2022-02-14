@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: zkty-dev
+  name: taro-vue-template
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taro-vue-template
+  template:
+    metadata:
+      labels:
+        app: taro-vue-template
+    spec:
+      containers:
+        - env:
+            - name: CACHE_IGNORE
+              value: js|html
+            - name: CACHE_PUBLIC_EXPIRATION
+              value: 3d
+          image: $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER
+          imagePullPolicy: Always
+          name: taro-vue-template
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 300m
+              memory: 1024Mi
+            requests:
+              cpu: 100m
+              memory: 500Mi
+      restartPolicy: Always

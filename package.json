@@ -1,0 +1,62 @@
+{
+  "name": "taro-vue-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "taro vue template",
+  "templateInfo": {
+    "name": "taro-ui-vue",
+    "typescript": true,
+    "css": "sass"
+  },
+  "scripts": {
+    "dev:weapp-dev": "npm run build:weapp-dev dev -- --watch",
+    "dev:weapp-uat": "npm run build:weapp-uat uat -- --watch",
+    "build:weapp-dev": "taro build dev --type weapp",
+    "build:weapp-uat": "taro build uat --type weapp",
+    "build:weapp-prod": "taro build prod --type weapp",
+    
+    "dev:h5-dev": "npm run build:h5-dev dev -- --watch",
+    "dev:h5-uat": "npm run build:h5-uat uat -- --watch",
+    "build:h5-dev": "taro build dev --type h5",
+    "build:h5-uat": "taro build uat --type h5",
+    "build:h5-prod": "taro build prod --type h5"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/cli": "3.3.5",
+    "@tarojs/components": "3.3.5",
+    "@tarojs/runtime": "3.3.5",
+    "@tarojs/taro": "3.3.5",
+    "@vue/eslint-config-airbnb": "^6.0.0",
+    "@zkty-team/x-engine-core": "^3.0.8",
+    "eslint-plugin-vuejs-accessibility": "^1.1.1",
+    "lodash": "4.17.15",
+    "normalize.css": "^8.0.1",
+    "taro-ui-vue": "^1.0.0-alpha.5",
+    "vue": "^2.5.0",
+    "vue-template-compiler": "^2.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@tarojs/mini-runner": "3.3.5",
+    "@tarojs/webpack-runner": "3.3.5",
+    "@types/webpack-env": "^1.13.6",
+    "@typescript-eslint/eslint-plugin": "^2.x",
+    "@typescript-eslint/parser": "^2.x",
+    "babel-preset-taro": "3.3.5",
+    "eslint": "^6.8.0",
+    "eslint-config-taro": "3.3.5",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^6.x",
+    "prettier": "2.5.1",
+    "stylelint": "9.3.0",
+    "typescript": "^3.7.0",
+    "vue-loader": "^15.9.2"
+  }
+}

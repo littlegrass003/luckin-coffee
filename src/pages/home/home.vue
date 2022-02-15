@@ -50,6 +50,19 @@
         <div style="fontSize:12px">查看更多</div>
       </div>
       <div class="bottom">
+        <div class="scroll">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+          <div class="item">7</div>
+          <div class="item">8</div>
+          <div class="item">9</div>
+          <div class="item">X</div>
+          <div class="item">XI</div>
+        </div>
       </div>
     </BaseCard>
   </div>
@@ -172,6 +185,20 @@ export default {
             align-items: center;
         }
         .bottom {
+            .scroll {
+                text-align: center;
+                white-space: nowrap;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                .item {
+                    width: 100px;
+                    height: 50px;
+                    background-color: aqua;
+                    border-right: 1px solid;
+                    white-space: nowrap;
+                    display: inline-block;
+                }
+            }
         }
     }
 }

@@ -2,11 +2,12 @@ const path = require('path')
 const config = {
   projectName: 'taro-vue-template',
   date: '2022-1-24',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,
-    828: 1.81 / 2
+    828: 1.81 / 2,
+    375: 1 / 2
   },
   alias: {
     '@/components': path.resolve(__dirname, '..', 'src/components'),
@@ -47,14 +48,23 @@ const config = {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
-      }
+      },
+      "postcss-px-scale": {
+        "enable": true,
+        "config": {
+          "scale": 0.5, //缩放为1/2
+          "units": "rpx",
+          "includes": ["taro-ui"]
+        }
+      },
     }
   },
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
     // 经过这一配置之后，代码中引入的处于 `node_modules/taro-ui/` 路径下的样式文件均会经过 postcss 的编译处理。
-    esnextModules: ['nutui-taro'],
+    // esnextModules: ['nutui-taro'],
+    esnextModules: ['taro-ui'],
     postcss: {
       autoprefixer: {
         enable: true,
@@ -67,8 +77,16 @@ const config = {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
-      }
-    }
+      },
+      "postcss-px-scale": {
+        "enable": true,
+        "config": {
+          "scale": 0.5, //缩放为1/2
+          "units": "rem",
+          "includes": ["taro-ui"]
+        }
+      },
+    },
   }
 }
 

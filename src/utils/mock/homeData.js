@@ -24,25 +24,32 @@ const optionsData = {
   ],
   bottom: [
     {
-      img: require('@/assets/image/home/dian.png'),
-      title: '充4赠3',
-      desc: '咖啡钱包'
+      img: require('@/assets/image/home/icon.png'),
+      title: '生日礼遇',
     },
     {
-      img: require('@/assets/image/home/song.png'),
-      title: '礼品卡',
-      desc: '传情达意'
+      img: require('@/assets/image/home/icon.png'),
+      title: '买手礼券',
     },
     {
-      img: require('@/assets/image/home/mai.png'),
-      title: '福利中心',
-      desc: '天天得福利'
+      img: require('@/assets/image/home/icon.png'),
+      title: '优先退换货',
     },
     {
-      img: require('@/assets/image/home/mai.png'),
-      title: '拼单满减',
-      desc: '一起点更划算'
-    }
+      img: require('@/assets/image/home/icon.png'),
+      title: '优先退换货',
+    }, {
+      img: require('@/assets/image/home/icon.png'),
+      title: '每月券包',
+    },
+    {
+      img: require('@/assets/image/home/icon.png'),
+      title: '火球周边',
+    },
+    {
+      img: require('@/assets/image/home/icon.png'),
+      title: '每月券包',
+    },
   ]
 }
 

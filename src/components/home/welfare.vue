@@ -23,20 +23,20 @@ export default {
 
 <style lang="scss">
 .welfare {
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #fff;
-    padding: 15px;
+    padding: 30px;
     .welfare-prompt {
-        height: 20px;
-        margin-bottom: 10px;
+        height: 40px;
+        margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         span {
-            font-size: 14px;
+            font-size: 28px;
         }
         .right-title {
-            font-size: 10px;
+            font-size: 20px;
             color: #999;
         }
     }
@@ -53,17 +53,17 @@ export default {
         .item {
             display: flex;
             flex-direction: column;
-            padding: 15px 50px 15px 15px;
-            border-radius: 5px;
+            padding: 30px 100px 30px 30px;
+            border-radius: 10px;
             height: 100%;
             background-color: pink;
-            margin-right: 5px;
+            margin-right: 10px;
             .title {
-                font-size: 14px;
+                font-size: 28px;
             }
             .desc {
-                margin-top: 5px;
-                font-size: 10px;
+                margin-top: 10px;
+                font-size: 20px;
                 color: #a81f24;
             }
         }

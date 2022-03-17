@@ -1,5 +1,5 @@
 export default {
-    pages: ['pages/home/home', 'pages/menu/menu', 'pages/order/order', 'pages/mine/mine'],
+    pages: ['pages/home/home', 'pages/mine/mine'],
     subPackages: [
         {
             root: 'pages/subPackages',
@@ -27,18 +27,6 @@ export default {
                 iconPath: 'assets/image/tabbar/home-nor.png',
                 selectedIconPath: 'assets/image/tabbar/home-sel.png',
                 text: '首页'
-            },
-            {
-                pagePath: 'pages/menu/menu',
-                iconPath: 'assets/image/tabbar/bbs-nor.png',
-                selectedIconPath: 'assets/image/tabbar/bbs-sel.png',
-                text: '菜单'
-            },
-            {
-                pagePath: 'pages/order/order',
-                iconPath: 'assets/image/tabbar/shopping-nor.png',
-                selectedIconPath: 'assets/image/tabbar/shopping-sel.png',
-                text: '订单'
             },
             {
                 pagePath: 'pages/mine/mine',

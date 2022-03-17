@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import './app.scss'
 import '@/assets/css/border.css'
 import '@/assets/css/reset.css'

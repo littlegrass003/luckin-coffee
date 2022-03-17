@@ -1,30 +1,44 @@
 <template>
-  <div class="home">
-    <Swiper :data="swipers" />
-    <Options class="margin-10" />
-    <Advertising class="margin-10" :imgData="guanggao" />
-    <Welfare class="margin-10" />
-    <List class="margin-10" />
+  <div class="home-container">
+    <HomeHeader :swiperData="swipers" />
+    <HomePrompt class="custom-margin" />
+    <GlobalBaseCard :title="测试" />
+    <HomeAchievement class="custom-margin" />
+    <HomeAdvertising class="custom-margin" :imgData="guanggao" />
+
+    <!-- <Options class="custom-margin" /> -->
+    <!-- <Advertising class="custom-margin" :imgData="guanggao" />
+    <Welfare class="custom-margin" /> -->
+    <!-- <List class="margin-10" /> -->
   </div>
 </template>
 
 <script>
-// import request from '@/utils/network'
+import Taro from '@tarojs/taro'
+import request from '@/utils/network'
+
 import { directTo } from '@/utils/vapiDispatcher'
 import pageData from '../../utils/mock/homeData'
-import Swiper from '@/components/home/swiper.vue'
-import Options from '@/components/home/options.vue'
-import Advertising from '@/components/home/advertising.vue'
-import Welfare from '@/components/home/welfare.vue'
-import List from '@/components/home/list.vue'
+
+import GlobalBaseCard from '@/components/home/GlobalBaseCard.vue'
+import HomeHeader from './components/HomeHeader.vue'
+import HomePrompt from './components/HomePrompt.vue'
+import HomeAchievement from './components/HomeAchievement.vue'
+import HomeAdvertising from './components/HomeAdvertising'
+
+// import Welfare from '@/components/home/welfare.vue'
+// import Options from '@/components/home/options.vue'
+
 
 export default {
     components: {
-        Swiper,
-        Options,
-        Advertising,
-        Welfare,
-        List
+        HomeHeader,
+        HomePrompt,
+        GlobalBaseCard,
+        HomeAchievement,
+        HomeAdvertising,
+        // Options,
+        // Welfare
     },
     data() {
         return {
@@ -33,20 +47,57 @@ export default {
         }
     },
     mounted() {
+        this.login()
         this.guanggao = require('@/assets/image/home/guanggao1.jpg')
-        console.log(this.guanggao)
         // this.initData()
     },
     methods: {
-        // async initData() {
-        //     if (process.env.TARO_ENV != 'weapp') {
-        //         const res = await request({
-        //             url: '/taro/issues',
-        //             data: { per_page: 1, page: 2 }
-        //         })
-        //         this.baseCardData = res[0].labels
-        //     }
-        // },
+        async login() {
+            if (Taro.ENV_TYPE.WEAPP == 'WEAPP') {
+                const res = await Taro.login()
+                if (res.code) {
+                    this.wxLogin(res.code)
+                } else {
+                    Taro.showToast({
+                        title: '没有获取WechatCode',
+                        duration: 2000
+                    })
+                }
+            } else {
+                const res = await request({
+                    url: '/taro/issues',
+                    data: { per_page: 1, page: 2 }
+                })
+                this.baseCardData = res[0].labels
+            }
+        },
+
+        async wxLogin(code) {
+            const res = await request({
+                method: 'POST',
+                url: '/wechat/auth/mp/jscode2session',
+                data: { jsCode: code }
+            })
+            if (res.result == 'success') {
+                console.log('1234')
+                // 这里应该是返回的token和用户信息
+                // openid
+                // session_key
+                this.getWechatInfo()
+            } else {
+                Taro.showToast({
+                    title: res.errorMsg,
+                    icon: 'none',
+                    duration: 2000
+                })
+            }
+        },
+
+        async getWechatInfo() {
+            const res = await Taro.getUserInfo()
+            console.log('userInfo==>', res)
+        },
+
         handleClick() {
             this.show = true
         },
@@ -63,51 +114,10 @@ export default {
 </script>
 
 <style lang="scss">
-.home {
-    background-color: #f2f2f2;
-
-    .margin-10 {
-        margin: 10px 10px 0;
+.home-container {
+    background-color: #f7f7f7;
+    .custom-margin {
+        margin: 20px 20px 0;
     }
-
-    // .welfare {
-    //     margin: 30px;
-    //     height: 200px;
-    //     .top {
-    //         padding: 30px;
-    //         display: flex;
-    //         justify-content: space-between;
-    //         align-items: center;
-    //     }
-    //     .bottom {
-    //         padding: 15px;
-    //         position: relative;
-    //         overflow: hidden;
-    //         .scroll {
-    //             text-align: center;
-    //             overflow-x: scroll;
-    //             overflow-y: hidden;
-    //             display: inline-block;
-    //             .item {
-    //                 border-radius: 10px;
-    //                 width: 200px;
-    //                 height: 100px;
-    //                 background-color: pink;
-    //                 line-height: 100px;
-    //                 padding: 20px;
-    //                 display: flex;
-    //                 flex-direction: column;
-    //                 .title {
-    //                     font-size: 14px;
-    //                     font-weight: 500;
-    //                 }
-    //                 .desc {
-    //                     font-size: 12px;
-    //                     color: red;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 }
 </style>

@@ -18,7 +18,8 @@ const HTTP_STATUS = {
 
 // 获取基础域名（根据业务自定义）
 const getBaseUrl = (url) => {
-    let BASE_URL = "https://api.github.com/repos/NervJS"
+    // let BASE_URL = "http://192.168.99.15:9090"
+    let BASE_URL = "http://123.125.164.221:30575"
     // if (process.env.NODE_ENV === 'development') {
     //     if (url.includes('/repos/NervJS/')) {
     //         BASE_URL = '' //填写你的请求域名
@@ -74,8 +75,8 @@ const request = ({ url, data = {}, method = 'get', header = {} }) => {
         Taro.request({
             ...options,
             success(result) {
+                resolve(result.data)
                 // 测试的用
-                resolve(result.data)        
                 // 请根据业务修改
                 // const { errcode, data: res, msg } = result
                 // if (errcode !== 1) {

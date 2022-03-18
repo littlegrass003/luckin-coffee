@@ -11,13 +11,13 @@
 
 <script>
 export default {
-    name: 'minePrompt'
+    name: 'MinePrompt'
 }
 </script>
 
 <style lang="scss">
 .mine-prompt {
-    background-color: #f0f2fa;
+    background-color: #fff;
     border-radius: 10px;
     height: 80px;
     display: flex;

@@ -2,14 +2,11 @@
   <div class="home-container">
     <HomeHeader :swiperData="swipers" />
     <HomePrompt class="custom-margin" />
-    <GlobalBaseCard :title="测试" />
     <HomeAchievement class="custom-margin" />
+    <HomeTask class="custom-margin" />
+    <HomeGift class="custom-margin" />
     <HomeAdvertising class="custom-margin" :imgData="guanggao" />
-
-    <!-- <Options class="custom-margin" /> -->
-    <!-- <Advertising class="custom-margin" :imgData="guanggao" />
-    <Welfare class="custom-margin" /> -->
-    <!-- <List class="margin-10" /> -->
+    <HomeKingkong class="custom-margin" style="paddingBottom:10px" />
   </div>
 </template>
 
@@ -20,25 +17,23 @@ import request from '@/utils/network'
 import { directTo } from '@/utils/vapiDispatcher'
 import pageData from '../../utils/mock/homeData'
 
-import GlobalBaseCard from '@/components/home/GlobalBaseCard.vue'
 import HomeHeader from './components/HomeHeader.vue'
-import HomePrompt from './components/HomePrompt.vue'
-import HomeAchievement from './components/HomeAchievement.vue'
+import HomePrompt from './components/HomePrompt'
+import HomeAchievement from './components/HomeAchievement'
 import HomeAdvertising from './components/HomeAdvertising'
-
-// import Welfare from '@/components/home/welfare.vue'
-// import Options from '@/components/home/options.vue'
-
+import HomeTask from './components/HomeTask'
+import HomeKingkong from './components/HomeKingkong'
+import HomeGift from './components/HomeGift'
 
 export default {
     components: {
         HomeHeader,
         HomePrompt,
-        GlobalBaseCard,
         HomeAchievement,
         HomeAdvertising,
-        // Options,
-        // Welfare
+        HomeTask,
+        HomeKingkong,
+        HomeGift
     },
     data() {
         return {

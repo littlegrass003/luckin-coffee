@@ -1,6 +1,6 @@
 <template>
-  <div class="home-achievement">
-    <GlobalBaseCard title="会员成就">
+  <div class="mine-achievement">
+    <GlobalBaseCard2 title="会员成就">
       <template #content>
         <div class="content">
           <div class="content-top">
@@ -9,7 +9,7 @@
               <span class="numberText">积分</span>
             </div>
             <div class="progress-container">
-              <AtProgress :percent="50" status='progress' isHidePercent color="#ff7e33" :strokeWidth="8" class="progress" />
+              <AtProgress :percent="50" status='progress' isHidePercent color="#37abc1" :strokeWidth="8" class="progress" />
               <div class="progress-title">29999/60000</div>
             </div>
           </div>
@@ -23,18 +23,18 @@
           </div>
         </div>
       </template>
-    </GlobalBaseCard>
+    </GlobalBaseCard2>
   </div>
 </template>
 
 <script>
-import GlobalBaseCard from '@/components/GlobalBaseCard'
-import pageData from '@/utils/mock/homeData'
+import GlobalBaseCard2 from '@/components/GlobalBaseCard2'
+import pageData from '@/utils/mock/mineData'
 import { AtProgress } from 'taro-ui-vue'
 export default {
-    name: 'HomeAchievement',
+    name: 'MineAchievement',
     components: {
-        GlobalBaseCard,
+        GlobalBaseCard2,
         AtProgress
     },
     data() {
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss">
-.home-achievement {
+.mine-achievement {
     .content {
         border-radius: 8px;
         margin-top: 20px;

@@ -1,7 +1,6 @@
 import './app.scss'
 import '@/assets/css/border.css'
 import '@/assets/css/reset.css'
-import '@/assets/css/common.css'
 
 const App = {
   onShow(options) {

@@ -19,9 +19,9 @@ export default {
 <style lang="scss">
 .advertising {
     height: 200px;
-    border-radius: 5px;
+    border-radius: 20px;
     .advertising-img {
-    border-radius: 5px;
+    border-radius: 20px;
         width: 100%;
         height: 100%;
         object-fit: cover;

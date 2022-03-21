@@ -1,3 +1,3 @@
 export default {
-    navigationBarTitleText: 'homeDetail'
+    navigationBarTitleText: '详情页'
 }

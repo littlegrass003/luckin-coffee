@@ -1,5 +1,5 @@
 <template>
-  <div class="mine-kingkong">
+  <div class="home-kingkong">
     <GlobalBaseCard>
       <template #content>
         <div class="content-bottom">
@@ -17,9 +17,9 @@
 
 <script>
 import GlobalBaseCard from '@/components/GlobalBaseCard'
-import pageData from '@/utils/mock/mineData.js'
+import pageData from '@/utils/mock/homeData.js'
 export default {
-    name: 'MineKingkong',
+    name: 'HomeKingkong',
     components: {
         GlobalBaseCard
     },
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss">
-.mine-kingkong {
+.home-kingkong {
     .content-bottom {
         display: flex;
         flex-wrap: wrap;

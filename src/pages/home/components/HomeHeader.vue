@@ -5,7 +5,7 @@
       <img class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
       <span class="home-top-name">Erich-Zhu</span>
       <span class="home-top-level">LV.5</span>
-      <div class="home-top-upgrade"><span class="home-top-upgrade-text">升级会员</span></div>
+      <div class="home-top-upgrade" @click="onClickUpgrade"><span class="home-top-upgrade-text">升级会员</span></div>
     </div>
     <div class="home-bottom">
       <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#333" current="1" :duration="500" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true">
@@ -18,12 +18,20 @@
 </template>
 
 <script>
+import { directTo } from '@/utils/vapiDispatcher'
 export default {
     name: 'HomeHeader',
     props: {
         swiperData: {
             type: Array,
             default: {}
+        }
+    },
+    methods: {
+        onClickUpgrade() {
+            directTo({
+                url: '/pages/subPackages/homeDetail/homeDetail?id=2222'
+            })
         }
     }
 }
@@ -55,14 +63,13 @@ export default {
             font-size: 36px;
             max-width: 200px;
         }
-        .home-top-level{
-          margin-left: 30px;
-          font-size: 24px;
-          background-color: #ff8500;
-          color: #fff;
-          padding: 2px 10px;
-          border-radius: 20px;
-
+        .home-top-level {
+            margin-left: 30px;
+            font-size: 24px;
+            background-color: #ff8500;
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 20px;
         }
         .home-top-upgrade {
             background-color: #fbe8d7;
@@ -82,9 +89,9 @@ export default {
         border-radius: 25px;
         .swiper {
             .swiper-item {
-              border-radius: 20px;
+                border-radius: 20px;
                 .swiper-image {
-                  border-radius: 20px;
+                    border-radius: 20px;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;

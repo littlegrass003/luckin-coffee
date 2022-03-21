@@ -1,5 +1,5 @@
 <template>
-  <div class="mine-prompt">
+  <div class="home-prompt">
     <div class="left">
       <img class="prompt" src="@/assets/image/home/home-prompt.png" alt="">
       <span>今日会员价大放送, 买一送一</span>
@@ -11,12 +11,12 @@
 
 <script>
 export default {
-    name: 'minePrompt'
+    name: 'homePrompt'
 }
 </script>
 
 <style lang="scss">
-.mine-prompt {
+.home-prompt {
     background-color: #f0f2fa;
     border-radius: 10px;
     height: 80px;

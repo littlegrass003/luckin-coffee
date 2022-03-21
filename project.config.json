@@ -1,7 +1,7 @@
 {
 	"miniprogramRoot": "./dist",
 	"projectname": "taro-vue-template",
-	"description": "taro vue template",
+	"description": "haichang",
 	"appid": "wx4cc75e05c93a7aa9",
 	"setting": {
 		"urlCheck": true,

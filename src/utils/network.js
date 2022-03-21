@@ -19,7 +19,7 @@ const HTTP_STATUS = {
 // 获取基础域名（根据业务自定义）
 const getBaseUrl = (url) => {
     // let BASE_URL = "http://192.168.99.15:9090"
-    let BASE_URL = "http://123.125.164.221:30575"
+    let BASE_URL = "https://dev.pzone.spacenx.cn"
     // if (process.env.NODE_ENV === 'development') {
     //     if (url.includes('/repos/NervJS/')) {
     //         BASE_URL = '' //填写你的请求域名

@@ -3,7 +3,7 @@ export default {
     subPackages: [
         {
             root: 'pages/subPackages',
-            pages: ['homeDetail/homeDetail']
+            pages: ['homeDetail/homeDetail', 'login/login', 'phoneLogin/phoneLogin']
         }
     ],
     window: {

@@ -38,6 +38,8 @@
     "eslint-plugin-vuejs-accessibility": "^1.1.1",
     "lodash": "4.17.15",
     "normalize.css": "^8.0.1",
+    "postcss": "^8.4.12",
+    "postcss-loader": "^6.2.1",
     "postcss-px-scale": "^1.1.1",
     "taro-ui-vue": "^1.0.0-alpha.5",
     "vue": "^2.5.0",

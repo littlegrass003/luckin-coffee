@@ -7,7 +7,6 @@ const config = {
     640: 2.34 / 2,
     750: 1,
     828: 1.81 / 2,
-    // 375: 1 / 2
   },
   alias: {
     '@/components': path.resolve(__dirname, '..', 'src/components'),
@@ -49,6 +48,7 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       },
+
       // "postcss-px-scale": {
       //   "enable": true,
       //   "config": {
@@ -57,6 +57,23 @@ const config = {
       //     "includes": ["taro-ui"]
       //   }
       // },
+    },
+    webpackChain: (chain, webpack) => {
+      chain.merge({
+        plugin: {
+          install: {
+            plugin: require('terser-webpack-plugin'),
+            args: [{
+              terserOptions: {
+                compress: true, // 默认使用terser压缩
+                // mangle: false,
+                keep_classnames: true, // 不改变class名称
+                keep_fnames: true // 不改变函数名称
+              }
+            }]
+          }
+        }
+      })
     }
   },
   h5: {

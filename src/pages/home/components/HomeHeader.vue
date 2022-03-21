@@ -2,7 +2,7 @@
   <div class="home-header">
     <div class="navigation"></div>
     <div class="home-top">
-      <img class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
+      <img @click="backLogin" class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
       <span class="home-top-name">Erich-Zhu</span>
       <span class="home-top-level">LV.5</span>
       <div class="home-top-upgrade" @click="onClickUpgrade"><span class="home-top-upgrade-text">升级会员</span></div>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import Taro from '@tarojs/taro'
 import { directTo } from '@/utils/vapiDispatcher'
 export default {
     name: 'HomeHeader',
@@ -32,6 +33,12 @@ export default {
             directTo({
                 url: '/pages/subPackages/homeDetail/homeDetail?id=2222'
             })
+        },
+        backLogin(){
+            Taro.reLaunch({
+                url: '/pages/subPackages/login/login'
+            })
+            Taro.setStorageSync('loginStatus', true)
         }
     }
 }

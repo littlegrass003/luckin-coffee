@@ -41,6 +41,13 @@ export default {
             guanggao: ''
         }
     },
+    created() {
+        if (Taro.getStorageSync('loginStatus')) {
+            Taro.reLaunch({
+                url: '/pages/subPackages/login/login'
+            })
+        }
+    },
     mounted() {
         this.login()
         this.guanggao = require('@/assets/image/home/guanggao1.jpg')
@@ -74,7 +81,6 @@ export default {
                 data: { jsCode: code }
             })
             if (res.result == 'success') {
-                console.log('1234')
                 // 这里应该是返回的token和用户信息
                 // openid
                 // session_key
@@ -96,6 +102,7 @@ export default {
         handleClick() {
             this.show = true
         },
+
         baseCardItemClick() {
             directTo({
                 url: '/pages/subPackages/homeDetail/homeDetail?id=2222'

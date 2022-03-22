@@ -1,14 +1,29 @@
 <template>
   <div class="home-header">
-    <div class="navigation"></div>
+    <div class="navigation" :style="{height:navHeight + 'px'}"></div>
     <div class="home-top">
       <img @click="backLogin" class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
-      <span class="home-top-name">Erich-Zhu</span>
+      <span class="home-top-name" @click="gotoCoupon">Erich-Zhu</span>
       <span class="home-top-level">LV.5</span>
       <div class="home-top-upgrade" @click="onClickUpgrade"><span class="home-top-upgrade-text">升级会员</span></div>
     </div>
+    <div class="home-content">
+      <div class="home-content-item">
+        <div class="title">120</div>
+        <div class="subtitle">优惠券</div>
+      </div>
+      <div class="home-content-item">
+        <div class="title">99</div>
+        <div class="subtitle">年卡</div>
+      </div>
+      <div class="home-content-item">
+        <div class="title">1999</div>
+        <div class="subtitle">工行联名卡</div>
+      </div>
+    </div>
     <div class="home-bottom">
-      <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#333" current="1" :duration="500" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true">
+      <!-- <swiper class="swiper" indicatorColor="#999" :previousMargin="40" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true"> -->
+      <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true">
         <swiper-item class="swiper-item" v-for="(item, index) in swiperData" :key="index">
           <image :src="item" class="swiper-image" />
         </swiper-item>
@@ -20,6 +35,7 @@
 <script>
 import Taro from '@tarojs/taro'
 import { directTo } from '@/utils/vapiDispatcher'
+import { navStatusBarHeight } from '@/utils/globalConfig'
 export default {
     name: 'HomeHeader',
     props: {
@@ -28,13 +44,24 @@ export default {
             default: {}
         }
     },
+    data() {
+        return {
+            autoplay: false,
+            navHeight: navStatusBarHeight
+        }
+    },
     methods: {
+        gotoCoupon() {
+            directTo({
+                url: '/pages/subPackages/myCoupon/myCoupon'
+            })
+        },
         onClickUpgrade() {
             directTo({
                 url: '/pages/subPackages/homeDetail/homeDetail?id=2222'
             })
         },
-        backLogin(){
+        backLogin() {
             Taro.reLaunch({
                 url: '/pages/subPackages/login/login'
             })
@@ -51,14 +78,12 @@ export default {
     // padding: 0 20px;
     .navigation {
         width: 100%;
-        height: 160px;
     }
     .home-top {
         padding: 0 20px;
         display: flex;
         align-items: center;
         position: relative;
-        margin-bottom: 20px;
         .home-top-icon {
             width: 100px;
             height: 100px;
@@ -88,6 +113,25 @@ export default {
             .home-top-upgrade-text {
                 color: #784d46;
                 padding: 15px 30px;
+            }
+        }
+    }
+    .home-content {
+        margin: 20px 0;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-around;
+        .home-content-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            .title {
+                font-weight: 500;
+            }
+            .subtitle {
+                font-size: 24px;
+                color: #333;
             }
         }
     }

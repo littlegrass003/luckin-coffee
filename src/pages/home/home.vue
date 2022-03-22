@@ -14,6 +14,7 @@
 import Taro from '@tarojs/taro'
 import request from '@/utils/network'
 
+import { navStatusBarHeight } from '@/utils/globalConfig'
 import { directTo } from '@/utils/vapiDispatcher'
 import pageData from '../../utils/mock/homeData'
 

@@ -48,15 +48,6 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       },
-
-      // "postcss-px-scale": {
-      //   "enable": true,
-      //   "config": {
-      //     "scale": 0.5, //缩放为1/2
-      //     "units": "rpx",
-      //     "includes": ["taro-ui"]
-      //   }
-      // },
     },
     webpackChain: (chain, webpack) => {
       chain.merge({

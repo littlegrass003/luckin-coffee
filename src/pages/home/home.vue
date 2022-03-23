@@ -43,14 +43,9 @@ export default {
         }
     },
     created() {
-        if (Taro.getStorageSync('loginStatus')) {
-            Taro.reLaunch({
-                url: '/pages/subPackages/login/login'
-            })
-        }
     },
     mounted() {
-        this.login()
+        // this.login()
         this.guanggao = require('@/assets/image/home/guanggao1.jpg')
         // this.initData()
     },
@@ -82,10 +77,8 @@ export default {
                 data: { jsCode: code }
             })
             if (res.result == 'success') {
-                // 这里应该是返回的token和用户信息
-                // openid
-                // session_key
-                this.getWechatInfo()
+                console.log(res.data.openid)
+                // this.businessLogin(res.data.openid)
             } else {
                 Taro.showToast({
                     title: res.errorMsg,
@@ -95,10 +88,14 @@ export default {
             }
         },
 
-        async getWechatInfo() {
-            const res = await Taro.getUserInfo()
-            console.log('userInfo==>', res)
-        },
+        // async businessLogin(openid) {
+        //     const res = await request({
+        //         method: 'POST',
+        //         url: '/member/auth/user/login',
+        //         data: { openId: openid }
+        //     })
+        //     console.log(res)
+        // },
 
         handleClick() {
             this.show = true

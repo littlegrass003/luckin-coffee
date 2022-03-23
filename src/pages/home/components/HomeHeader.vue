@@ -3,7 +3,7 @@
     <div class="navigation" :style="{height:navHeight + 'px'}"></div>
     <div class="home-top">
       <img @click="backLogin" class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
-      <span class="home-top-name" @click="gotoCoupon">Erich-Zhu</span>
+      <span class="home-top-name" @click="gotoCoupon">微信用户</span>
       <span class="home-top-level">LV.5</span>
       <div class="home-top-upgrade" @click="onClickUpgrade"><span class="home-top-upgrade-text">升级会员</span></div>
     </div>
@@ -22,7 +22,6 @@
       </div>
     </div>
     <div class="home-bottom">
-      <!-- <swiper class="swiper" indicatorColor="#999" :previousMargin="40" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true"> -->
       <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true">
         <swiper-item class="swiper-item" v-for="(item, index) in swiperData" :key="index">
           <image :src="item" class="swiper-image" />
@@ -62,10 +61,9 @@ export default {
             })
         },
         backLogin() {
-            Taro.reLaunch({
-                url: '/pages/subPackages/login/login'
+            directTo({
+                url: '/pages/subPackages/authorization/authorization'
             })
-            Taro.setStorageSync('loginStatus', true)
         }
     }
 }

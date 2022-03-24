@@ -55,7 +55,7 @@ export default {
                 title: '正在登录...'
             })
             const userInfo = Taro.getStorageSync('wechat_userInfo')
-            const openId = Taro.getStorageSync('wechat_code')
+            const openId = Taro.getStorageSync('wechat_openId')
             console.log('userInfo==>', userInfo)
             console.log('openId==>', openId)
             const res = await request({

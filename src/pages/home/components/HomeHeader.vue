@@ -2,7 +2,7 @@
   <div class="home-header">
     <div class="navigation" :style="{height:navHeight + 'px'}"></div>
     <div class="home-top">
-      <div v-if="token" class="home-userinfo">
+      <div v-if="userInfo.avatar" class="home-userinfo">
         <img @click="backLogin" class="home-top-icon" :src="userInfo.avatar" alt="">
         <span class="home-top-name" @click="gotoCoupon">{{userInfo.nickname}}</span>
       </div>

@@ -60,11 +60,17 @@ Taro.addInterceptor(Taro.interceptors.logInterceptor)
 
 // 请求(根据业务自定义)
 const request = ({ url, data = {}, method = 'get', header = {} }) => {
+
     const BASE_URL = getBaseUrl(url)
-    const handleHeader = {
+    let handleHeader = {
         'content-type': 'application/json',
         ...header
     }
+
+    if (Taro.getStorageSync('wechat_token')) {
+        handleHeader.Authorization = "Bearer " + Taro.getStorageSync('wechat_token').sessionToken
+    }
+
     return new Promise((resolve, reject) => {
         const options = {
             url: `${BASE_URL}${url}`,

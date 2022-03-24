@@ -47,6 +47,7 @@ export default {
                         userInfo.avatar = res.userInfo.avatarUrl
                         userInfo.nickname = res.userInfo.nickName
                         Taro.setStorageSync('wechat_userInfo', userInfo)
+                        console.log(Taro.getStorageSync('wechat_userInfo'))
                         this.getWxCode()
                     },
                     fail: (error) => {
@@ -78,7 +79,7 @@ export default {
                 data: { jsCode: code }
             })
             if (res.code == 0) {
-                Taro.setStorageSync('wechat_code', res.data.openid)
+                Taro.setStorageSync('wechat_openId', res.data.openid)
                 this.businessLogin(res.data.openid)
             } else {
                 Taro.showToast({
@@ -105,7 +106,6 @@ export default {
                     userToken: res.data.userToken
                 }
                 Taro.setStorageSync('wechat_token', token)
-                Taro.setStorageSync('wechat_userInfo', res.data.user)
                 Taro.hideLoading()
                 Taro.showToast({
                     title: '授权成功',

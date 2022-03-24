@@ -15,7 +15,7 @@
 <script>
 import Taro from '@tarojs/taro'
 import { directTo } from '@/utils/vapiDispatcher'
-
+import request from '@/utils/network'
 import { AtCheckbox } from 'taro-ui-vue'
 
 export default {
@@ -25,7 +25,7 @@ export default {
     },
     data() {
         return {
-            checkedList: [],
+            checkedList: ['1'],
             checkboxOption: [
                 {
                     value: '1',
@@ -36,34 +36,90 @@ export default {
     },
     mounted() {},
     methods: {
+        // 1-吊起授权弹框 保存用户信息
         gotoGetUserInfo() {
             if (this.checkedList.length != 0) {
                 Taro.getUserProfile({
                     lang: 'zh_CN',
                     desc: '获取您的昵称和头像',
                     success: (res) => {
-                        directTo({
-                            url: '/pages/subPackages/authorizationPhone/authorizationPhone'
-                        })
+                        let userInfo = {}
+                        userInfo.avatarUrl = res.userInfo.avatarUrl
+                        userInfo.nickName = res.userInfo.nickName
+                        Taro.setStorageSync('wechat_userInfo', userInfo)
+                        this.getWxCode()
                     },
                     fail: (error) => {
-                        console.log(error)
+                        console.log('error==>', error)
                     }
                 })
             } else {
                 Taro.showToast({
-                    title:'请勾选用户协议',
-                    icon:'none',
-                    mask:'true'
+                    title: '请勾选用户协议',
+                    icon: 'none',
+                    mask: 'true'
                 })
             }
         },
+
+        // 2-获取wechat code
+        async getWxCode() {
+            const loginRes = await Taro.login()
+            if (loginRes.code) {
+                this.getOpenID(loginRes.code)
+            }
+        },
+
+        // 3-通过wechat code 获取openid
+        async getOpenID(code) {
+            const res = await request({
+                method: 'POST',
+                url: '/wechat/auth/mp/jscode2session',
+                data: { jsCode: code }
+            })
+            if (res.result == 'success') {
+                Taro.setStorageSync('wechat_code', res.data.openid)
+                this.businessLogin(res.data.openid)
+            } else {
+                Taro.showToast({
+                    title: res.errorMsg,
+                    icon: 'none',
+                    duration: 2000
+                })
+            }
+        },
+
+        // 4- 业务登录
+        async businessLogin(openId) {
+            const res = await request({
+                method: 'POST',
+                url: '/member/auth/user/login',
+                data: { openId: openId }
+            })
+            console.log(res)
+            // if (res.code == 0) {
+                
+            //     // Taro.setStorageSync('token', res.)
+            //     Taro.showToast({
+            //         title: '登录成功',
+            //         mask: 'none'
+            //     })
+            //     wx.navigateBack({
+            //         delta: 1
+            //     })
+            // } else {
+            //     Taro.showToast({
+            //         title: res.message,
+            //         icon: 'none',
+            //         mask: true
+            //     })
+            //     directTo({
+            //         url: '/pages/subPackages/authorizationPhone/authorizationPhone'
+            //     })
+            // }
+        },
         onClickCheckbox(e) {
             this.checkedList = e
-        },
-        async getWechatInfo() {
-            const res = await Taro.getUserInfo()
-            console.log('userInfo==>', res)
         }
     }
 }

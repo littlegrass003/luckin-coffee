@@ -28,12 +28,13 @@ export default {
     methods: {
         async getPhoneNumber(e) {
             if (e.detail.errMsg == 'getPhoneNumber:ok') {
+                // 最新代码不用传给后台iv和encryptedData
                 let params = {
                     code: e.detail.code,
                     encryptedData: e.detail.encryptedData,
                     iv: e.detail.iv
                 }
-                console.log(params)
+                console.log('phone-code', params.code)
                 const res = await request({
                     method: 'POST',
                     url: '/wechat/auth/mp/getUserPhoneNumber',
@@ -41,18 +42,32 @@ export default {
                         code: params.code
                     }
                 })
-                console.log(res)
+                this.registerAccount(res.data.phoneNumber)
             }
-            // console.log(`是否成功调用${e.detail.errMsg}`)
-            // console.log(`加密算法的初始向量:${e.detail.iv}`)
-            // console.log(`包括敏感数据在内的完整用户信息的加密数据:${e.detail.encryptedData}`)
-            // console.log('kafhlihawflksdklfd==>', e)
-            // console.log(e.detail.code)
-            // let params = {
-            //   encryptedData: e.detail.encryptedData,
-            //   iv: e.detail.iv,
+        },
+        async registerAccount(phoneNum) {
+            Taro.navigateBack({
+                delta: 2
+            })
+            // let userInfo = Taro.getStorageSync('wechat_userInfo')
+            // const res = await request({
+            //     method: 'POST',
+            //     url: '/member/auth/user/createUser',
+            //     data: {
+            //         avatar: userInfo.avatarUrl,
+            //         nickname: userInfo.nickName,
+            //         phoneNum: phoneNum,
+            //         openId: Taro.getStorageSync('wechat_code')
+            //     }
+            // })
+            // if (res.code == 0) {
+            //     Taro.showToast({
+            //         title: res.message,
+            //         icon: 'none',
+            //         mask: 'true'
+            //     })
             // }
-            // console.log(params)
+            // consle.log('resigrter==>', res)
         },
         onClickCustomPhone(e) {
             directTo({

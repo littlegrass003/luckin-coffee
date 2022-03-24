@@ -76,8 +76,6 @@ const request = ({ url, data = {}, method = 'get', header = {} }) => {
             ...options,
             success(result) {
                 resolve(result.data)
-                // 测试的用
-                // 请根据业务修改
                 // const { errcode, data: res, msg } = result
                 // if (errcode !== 1) {
                 //     // console.log(msg)

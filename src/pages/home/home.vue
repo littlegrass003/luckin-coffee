@@ -13,9 +13,9 @@
 <script>
 import Taro from '@tarojs/taro'
 import request from '@/utils/network'
-
 import { navStatusBarHeight } from '@/utils/globalConfig'
 import { directTo } from '@/utils/vapiDispatcher'
+
 import pageData from '../../utils/mock/homeData'
 
 import HomeHeader from './components/HomeHeader.vue'
@@ -45,58 +45,9 @@ export default {
     created() {
     },
     mounted() {
-        // this.login()
         this.guanggao = require('@/assets/image/home/guanggao1.jpg')
-        // this.initData()
     },
     methods: {
-        async login() {
-            if (Taro.ENV_TYPE.WEAPP == 'WEAPP') {
-                const res = await Taro.login()
-                if (res.code) {
-                    this.wxLogin(res.code)
-                } else {
-                    Taro.showToast({
-                        title: '没有获取WechatCode',
-                        duration: 2000
-                    })
-                }
-            } else {
-                const res = await request({
-                    url: '/taro/issues',
-                    data: { per_page: 1, page: 2 }
-                })
-                this.baseCardData = res[0].labels
-            }
-        },
-
-        async wxLogin(code) {
-            const res = await request({
-                method: 'POST',
-                url: '/wechat/auth/mp/jscode2session',
-                data: { jsCode: code }
-            })
-            if (res.result == 'success') {
-                console.log(res.data.openid)
-                // this.businessLogin(res.data.openid)
-            } else {
-                Taro.showToast({
-                    title: res.errorMsg,
-                    icon: 'none',
-                    duration: 2000
-                })
-            }
-        },
-
-        // async businessLogin(openid) {
-        //     const res = await request({
-        //         method: 'POST',
-        //         url: '/member/auth/user/login',
-        //         data: { openId: openid }
-        //     })
-        //     console.log(res)
-        // },
-
         handleClick() {
             this.show = true
         },

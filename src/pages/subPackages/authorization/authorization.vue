@@ -2,7 +2,7 @@
   <div class="authorization-container">
     <div class="welcome">欢迎使用 海昌小程序</div>
     <div class="prompt">授权微信头像、昵称 </div>
-    <img class="logo" src="../../../assets/image/home/guanggao1.jpg" alt="">
+    <!-- <img class="logo" src="../../../assets/image/home/guanggao1.jpg" alt=""> -->
     <div class="prompt">为提供优质服务, 小程序需要获取你的以下信息:</div>
     <div class="prompt">· 你的公开信息(头像、昵称等)</div>
     <button class="auth-button" open-type="getUserInfo" @click="gotoGetUserInfo">授权进入小程序</button>
@@ -14,7 +14,7 @@
 
 <script>
 import Taro from '@tarojs/taro'
-import { directTo } from '@/utils/vapiDispatcher'
+import { directTo, directBack } from '@/utils/vapiDispatcher'
 import request from '@/utils/network'
 import { AtCheckbox } from 'taro-ui-vue'
 
@@ -44,8 +44,8 @@ export default {
                     desc: '获取您的昵称和头像',
                     success: (res) => {
                         let userInfo = {}
-                        userInfo.avatarUrl = res.userInfo.avatarUrl
-                        userInfo.nickName = res.userInfo.nickName
+                        userInfo.avatar = res.userInfo.avatarUrl
+                        userInfo.nickname = res.userInfo.nickName
                         Taro.setStorageSync('wechat_userInfo', userInfo)
                         this.getWxCode()
                     },
@@ -77,7 +77,7 @@ export default {
                 url: '/wechat/auth/mp/jscode2session',
                 data: { jsCode: code }
             })
-            if (res.result == 'success') {
+            if (res.code == 0) {
                 Taro.setStorageSync('wechat_code', res.data.openid)
                 this.businessLogin(res.data.openid)
             } else {
@@ -91,32 +91,44 @@ export default {
 
         // 4- 业务登录
         async businessLogin(openId) {
+            Taro.showLoading({
+                title: '授权中...'
+            })
             const res = await request({
                 method: 'POST',
                 url: '/member/auth/user/login',
                 data: { openId: openId }
             })
-            console.log(res)
-            // if (res.code == 0) {
-                
-            //     // Taro.setStorageSync('token', res.)
-            //     Taro.showToast({
-            //         title: '登录成功',
-            //         mask: 'none'
-            //     })
-            //     wx.navigateBack({
-            //         delta: 1
-            //     })
-            // } else {
-            //     Taro.showToast({
-            //         title: res.message,
-            //         icon: 'none',
-            //         mask: true
-            //     })
-            //     directTo({
-            //         url: '/pages/subPackages/authorizationPhone/authorizationPhone'
-            //     })
-            // }
+            if (res.code == 0) {
+                const token = {
+                    sessionToken: res.data.sessionToken,
+                    userToken: res.data.userToken
+                }
+                Taro.setStorageSync('wechat_token', token)
+                Taro.setStorageSync('wechat_userInfo', res.data.user)
+                Taro.hideLoading()
+                Taro.showToast({
+                    title: '授权成功',
+                    icon: 'none',
+                    mask: 'none',
+                    duration: 1500
+                })
+                setTimeout(() => {
+                    Taro.reLaunch({
+                        url: '/pages/home/home'
+                    })
+                }, 1500)
+            } else {
+                Taro.hideLoading()
+                Taro.showToast({
+                    title: res.message,
+                    icon: 'none',
+                    mask: true
+                })
+                directTo({
+                    url: '/pages/subPackages/authorizationPhone/authorizationPhone'
+                })
+            }
         },
         onClickCheckbox(e) {
             this.checkedList = e

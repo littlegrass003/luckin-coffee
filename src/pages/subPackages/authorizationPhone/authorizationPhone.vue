@@ -5,7 +5,8 @@
     <!-- <img class="logo" src="../../../assets/image/home/guanggao1.jpg" alt=""> -->
     <div class="user-info">
       <div class="user-info-avatar">
-        <open-data type="userAvatarUrl"></open-data>
+        <!-- <open-data type="userAvatarUrl"></open-data> -->
+        <img class="user-info-icon" :src="userInfo.avatar" alt="">
       </div>
     </div>
     <button class="auth-button" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">微信用户一键登录</button>
@@ -22,9 +23,13 @@ export default {
     name: 'Authorization',
     components: {},
     data() {
-        return {}
+        return {
+            userInfo: {}
+        }
     },
-    mounted() {},
+    mounted() {
+        this.userInfo = Taro.getStorageSync('wechat_userInfo')
+    },
     methods: {
         async getPhoneNumber(e) {
             if (e.detail.errMsg == 'getPhoneNumber:ok') {
@@ -46,28 +51,48 @@ export default {
             }
         },
         async registerAccount(phoneNum) {
-            Taro.navigateBack({
-                delta: 2
+            Taro.showLoading({
+                title: '正在登录...'
             })
-            // let userInfo = Taro.getStorageSync('wechat_userInfo')
-            // const res = await request({
-            //     method: 'POST',
-            //     url: '/member/auth/user/createUser',
-            //     data: {
-            //         avatar: userInfo.avatarUrl,
-            //         nickname: userInfo.nickName,
-            //         phoneNum: phoneNum,
-            //         openId: Taro.getStorageSync('wechat_code')
-            //     }
-            // })
-            // if (res.code == 0) {
-            //     Taro.showToast({
-            //         title: res.message,
-            //         icon: 'none',
-            //         mask: 'true'
-            //     })
-            // }
-            // consle.log('resigrter==>', res)
+            const userInfo = Taro.getStorageSync('wechat_userInfo')
+            const openId = Taro.getStorageSync('wechat_code')
+            console.log('userInfo==>', userInfo)
+            console.log('openId==>', openId)
+            const res = await request({
+                method: 'POST',
+                url: '/member/auth/user/createUser',
+                data: {
+                    avatar: userInfo.avatarUrl,
+                    nickname: userInfo.nickName,
+                    phoneNum: phoneNum,
+                    openId: openId
+                }
+            })
+            if (res.code == 0) {
+                const token = {
+                    sessionToken: res.data.sessionToken,
+                    userToken: res.data.userToken
+                }
+                Taro.setStorageSync('wechat_token', token)
+                Taro.hideLoading()
+                Taro.showToast({
+                    title: '登录成功',
+                    icon: 'none',
+                    mask: 'true',
+                    duration: 1500
+                })
+                setTimeout(() => {
+                    Taro.reLaunch({
+                        url: '/pages/home/home'
+                    })
+                }, 1500)
+            } else {
+                Taro.showToast({
+                    title: res.message,
+                    icon: 'none',
+                    mask: 'true'
+                })
+            }
         },
         onClickCustomPhone(e) {
             directTo({
@@ -111,6 +136,11 @@ export default {
             border-radius: 50%;
             border: 2px solid #fff;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        .user-info-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
     .auth-button {

@@ -5,7 +5,6 @@
     <HomeAchievement class="custom-margin" />
     <HomeTask class="custom-margin" />
     <HomeGift class="custom-margin" />
-    <HomeAdvertising class="custom-margin" :imgData="guanggao" />
     <HomeKingkong class="custom-margin" style="paddingBottom:10px" />
   </div>
 </template>
@@ -21,7 +20,6 @@ import pageData from '../../utils/mock/homeData'
 import HomeHeader from './components/HomeHeader.vue'
 import HomePrompt from './components/HomePrompt'
 import HomeAchievement from './components/HomeAchievement'
-import HomeAdvertising from './components/HomeAdvertising'
 import HomeTask from './components/HomeTask'
 import HomeKingkong from './components/HomeKingkong'
 import HomeGift from './components/HomeGift'
@@ -31,7 +29,6 @@ export default {
         HomeHeader,
         HomePrompt,
         HomeAchievement,
-        HomeAdvertising,
         HomeTask,
         HomeKingkong,
         HomeGift
@@ -39,13 +36,10 @@ export default {
     data() {
         return {
             ...pageData,
-            guanggao: ''
         }
     },
-    created() {
-    },
+    created() {},
     mounted() {
-        this.guanggao = require('@/assets/image/home/guanggao1.jpg')
     },
     methods: {
         handleClick() {

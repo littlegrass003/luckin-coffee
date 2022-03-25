@@ -16,15 +16,20 @@
         <CouponCenterCard title="20:00" />
       </div>
     </div>
+    <div class="coupon-list">
+      <CouponCenterList /> 
+    </div>
   </div>
 </template>
 
 <script>
-import CouponCenterCard from './components/couponCenterCard.vue'
+import CouponCenterCard from './components/CouponCenterCard'
+import CouponCenterList from './components/CouponCenterList'
 export default {
     name: 'CouponCenter',
     components: {
-        CouponCenterCard
+        CouponCenterCard,
+        CouponCenterList
     },
     data() {
         return {
@@ -63,6 +68,9 @@ export default {
             background-color: red;
             color: #fff;
         }
+    }
+    .coupon-list{
+      margin-top: 36px;
     }
 }
 </style>

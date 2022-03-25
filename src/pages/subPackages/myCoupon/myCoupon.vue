@@ -2,9 +2,9 @@
   <div class="myCoupon-container">
     <MyCouponCard :listData="myCouponData" class="list" />
     <div class="bottom">
-      <div @click="onClickUsingRecord">使用记录</div>
+      <div @click="onClickUsingRecord">已使用</div>
       <div class="line">|</div>
-      <div @click="onClickCouponCenter">领券中心</div>
+      <div @click="onClickCouponCenter">已过期</div>
     </div>
   </div>
 </template>
@@ -34,14 +34,14 @@ export default {
     },
     methods: {
         onClickUsingRecord() {
-            directTo({
-                url: '/pages/subPackages/usingRecord/usingRecord'
-            })
+            // directTo({
+            //     url: '/pages/subPackages/usingRecord/usingRecord'
+            // })
         },
         onClickCouponCenter() {
-            directTo({
-                url: '/pages/subPackages/couponCenter/couponCenter'
-            })
+            // directTo({
+            //     url: '/pages/subPackages/couponCenter/couponCenter'
+            // })
         }
     }
 }

@@ -38,7 +38,7 @@ export default {
     methods: {
         gotoCoupon() {
             directTo({
-                url: '/pages/subPackages/myCoupon/myCoupon'
+                url: '/pages/subPackages/realName/realName'
             })
         },
         onClickUpgrade() {

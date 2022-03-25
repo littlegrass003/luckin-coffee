@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { directTo } from '@/utils/vapiDispatcher'
 export default {
     name: 'HomeCard',
     props: {
@@ -39,9 +40,15 @@ export default {
         // type == bag    我的卷包
         onClickItem() {
             if (this.type == 'center') {
-                console.log('领券中心')
+                // 领券中心
+                directTo({
+                    url: '/pages/subPackages/couponCenter/couponCenter'
+                })
             } else {
-                console.log('我的卷包')
+                // 我的卷包
+                directTo({
+                    url: '/pages/subPackages/myCoupon/myCoupon'
+                })
             }
         }
     }

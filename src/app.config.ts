@@ -4,13 +4,13 @@ export default {
         {
             root: 'pages/subPackages',
             pages: [
-                'homeDetail/homeDetail',
                 'authorization/authorization',
                 'authorizationPhone/authorizationPhone',
                 'phoneLogin/phoneLogin',
                 'myCoupon/myCoupon',
                 'usingRecord/usingRecord',
-                'couponCenter/couponCenter'
+                'couponCenter/couponCenter',
+                'realName/realName'
             ]
         }
     ],

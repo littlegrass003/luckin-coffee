@@ -47,7 +47,16 @@ export default {
                         code: params.code
                     }
                 })
-                this.registerAccount(res.data.phoneNumber)
+                if(res.code == 0){
+                    this.registerAccount(res.data.phoneNumber)
+                } else {
+                    Taro.showToast({
+                    title: res.message,
+                    icon: 'none',
+                    mask: 'true',
+                    duration: 1500
+                })
+                }
             }
         },
         async registerAccount(phoneNum) {

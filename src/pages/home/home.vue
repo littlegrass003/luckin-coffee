@@ -1,46 +1,35 @@
 <template>
   <div class="home-container">
-    <HomeHeader :swiperData="swipers" />
-    <HomePrompt class="custom-margin" />
-    <HomeAchievement class="custom-margin" />
-    <HomeTask class="custom-margin" />
-    <HomeGift class="custom-margin" />
-    <HomeKingkong class="custom-margin" style="paddingBottom:10px" />
+    <HomeHeader />
+    <HomeSwiper :swiperData="swipers"/>
+    <HomeCard title="领券中心" subTitle="领取更多优惠券" style="margin-top:40px" :bgc="centerBgc" type="center" />
+    <HomeCard title="我的卷包" subTitle="查看我的优惠券" style="margin-top:20px" :bgc="bagBgc" type="bag" />
   </div>
 </template>
 
 <script>
-import Taro from '@tarojs/taro'
-import request from '@/utils/network'
-import { navStatusBarHeight } from '@/utils/globalConfig'
 import { directTo } from '@/utils/vapiDispatcher'
-
+import { OSS_URL } from '@/utils/globalConfig'
 import pageData from '../../utils/mock/homeData'
-
 import HomeHeader from './components/HomeHeader.vue'
-import HomePrompt from './components/HomePrompt'
-import HomeAchievement from './components/HomeAchievement'
-import HomeTask from './components/HomeTask'
-import HomeKingkong from './components/HomeKingkong'
-import HomeGift from './components/HomeGift'
+import HomeSwiper from './components/HomeSwiper.vue'
+import HomeCard from './components/HomeCard'
 
 export default {
     components: {
         HomeHeader,
-        HomePrompt,
-        HomeAchievement,
-        HomeTask,
-        HomeKingkong,
-        HomeGift
+        HomeSwiper,
+        HomeCard
     },
     data() {
         return {
-            ...pageData,
+            centerBgc: OSS_URL + '/home/center.png',
+            bagBgc: OSS_URL + '/home/bag.png',
+            ...pageData
         }
     },
     created() {},
-    mounted() {
-    },
+    mounted() {},
     methods: {
         handleClick() {
             this.show = true
@@ -60,7 +49,8 @@ export default {
 
 <style lang="scss">
 .home-container {
-    background-color: #f7f7f7;
+    height: 100vh;
+    background-color: #178cf6;
     .custom-margin {
         margin: 20px 20px 0;
     }

@@ -14,6 +14,9 @@ export const navStatusBarHeight = statusBarHeight + menu.height + (menu.top - st
 // 有导航条 没有tabbar的可视区域高度
 export const viewingArea = Taro.getSystemInfoSync().windowHeight
 
+// oss地址
+export const OSS_URL = "http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat"
+
 console.log('状态栏高度', statusBarHeight)
 console.log('导航栏高度', navBarHeight)
 console.log('状态栏加导航栏高度', navStatusBarHeight)

@@ -2,7 +2,6 @@
   <div class="authorization-container">
     <div class="welcome">欢迎使用 海昌小程序</div>
     <div class="prompt">授权微信头像、昵称 </div>
-    <!-- <img class="logo" src="../../../assets/image/home/guanggao1.jpg" alt=""> -->
     <div class="prompt">为提供优质服务, 小程序需要获取你的以下信息:</div>
     <div class="prompt">· 你的公开信息(头像、昵称等)</div>
     <button class="auth-button" open-type="getUserInfo" @click="gotoGetUserInfo">授权进入小程序</button>
@@ -139,7 +138,7 @@ export default {
 
 <style lang="less">
 .authorization-container {
-    background-color: white;
+    background-color: #fff;
     width: 100%;
     margin-top: 40px;
     .welcome {

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-header">
+  <div class="home-header" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
     <div class="navigation" :style="{height:navHeight + 'px'}"></div>
     <div class="home-top">
       <div v-if="userInfo.avatar" class="home-userinfo">
@@ -11,13 +11,6 @@
         <span class="home-top-name" @click="gotoCoupon">微信用户</span>
       </div>
     </div>
-    <div class="home-bottom">
-      <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true">
-        <swiper-item class="swiper-item" v-for="(item, index) in swiperData" :key="index">
-          <image :src="item" class="swiper-image" />
-        </swiper-item>
-      </swiper>
-    </div>
   </div>
 </template>
 
@@ -25,20 +18,17 @@
 import Taro from '@tarojs/taro'
 import { directTo } from '@/utils/vapiDispatcher'
 import { navStatusBarHeight } from '@/utils/globalConfig'
+import { OSS_URL } from '@/utils/globalConfig'
 export default {
     name: 'HomeHeader',
-    props: {
-        swiperData: {
-            type: Array,
-            default: {}
-        }
-    },
+
     data() {
         return {
             autoplay: false,
             navHeight: navStatusBarHeight,
             token: {},
-            userInfo: {}
+            userInfo: {},
+            backgroundImg: OSS_URL + '/home/bgc.png'
         }
     },
     mounted() {
@@ -68,13 +58,12 @@ export default {
 <style lang="scss">
 .home-header {
     width: 100%;
-    background: linear-gradient(to bottom, #fdd19b, #faf5f0);
+    height: 600px;
     .navigation {
         width: 100%;
     }
     .home-top {
-        margin-bottom: 20px;
-        padding: 0 20px;
+        padding: 0 30px;
         display: flex;
         align-items: center;
         position: relative;
@@ -88,24 +77,10 @@ export default {
                 border-radius: 50%;
             }
             .home-top-name {
+                color: #fff;
                 margin-left: 30px;
-                font-size: 36px;
+                font-size: 48px;
                 max-width: 200px;
-            }
-        }
-    }
-    .home-bottom {
-        margin: 0 20px;
-        border-radius: 25px;
-        .swiper {
-            .swiper-item {
-                border-radius: 20px;
-                .swiper-image {
-                    border-radius: 20px;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
             }
         }
     }

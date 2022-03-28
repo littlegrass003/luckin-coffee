@@ -17,12 +17,13 @@
       </div>
     </div>
     <div class="coupon-list">
-      <CouponCenterList /> 
+      <CouponCenterList :listData="couponCenterData"/> 
     </div>
   </div>
 </template>
 
 <script>
+import pageData from '@/utils/mock/homeData'
 import CouponCenterCard from './components/CouponCenterCard'
 import CouponCenterList from './components/CouponCenterList'
 export default {
@@ -33,6 +34,7 @@ export default {
     },
     data() {
         return {
+            ...pageData,
             isActive: 1
         }
     },
@@ -46,8 +48,8 @@ export default {
 
 <style lang="scss">
 .couponCenter-container {
-    background-color: #f2f2f2;
-    margin: 30px;
+    background-color: #f0f4f7;
+    padding: 30px;
     .top {
         display: flex;
         justify-content: space-between;

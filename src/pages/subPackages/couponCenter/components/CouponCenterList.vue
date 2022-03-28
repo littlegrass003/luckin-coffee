@@ -1,6 +1,6 @@
 <template>
   <div class="couponCenterList-container">
-    <div class="myCouponCard-row" v-for="(item, index) in listData" :key="index">
+    <div class="couponCenterList-row" v-for="(item, index) in listData" :key="index">
       <div class="one-row">
         <div class="left">
           <img class="img" :src="item.imgUrl" alt="">
@@ -8,26 +8,21 @@
         <div class="right">
           <span class="name">{{item.name}}</span>
           <span class="time">{{item.time}}</span>
+          <div>
+            <div v-if="item.isLingqu==1" class="get-class">领取</div>
+            <div v-else-if="item.isLingqu==2" class="use-class" @click="onClickUse">立即使用</div>
+            <div v-else class="guoqi-class">领取</div>
+          </div>
         </div>
       </div>
-      <div class="two-row">
-        <div @click="onClickInstructions" class="instructions">
-          <span>使用规则说明</span>
-          <img v-if="isShowDetail" class="instructions-img" src="@/assets/image/global/arrow_shang.png" alt="">
-          <img v-else class="instructions-img" src="@/assets/image/global/arrow_xia.png" alt="">
-        </div>
-        <div :class="[isShowDetail ? 'active-button' : 'normal-button']">使用核销</div>
-      </div>
-      <div class="three-row" v-show="isShowDetail">{{item.detail}}
-      </div>
-      <img class="guoqi-class" v-if="item.isGuoqi" src="@/assets/image/coupon/guoqi.png" alt="">
     </div>
   </div>
 </template>
 
 <script>
+import { directTo } from '@/utils/vapiDispatcher'
 export default {
-    name: 'myCouponCard',
+    name: 'CouponCenterList',
     props: {
         listData: {
             type: Array,
@@ -42,6 +37,11 @@ export default {
     methods: {
         onClickInstructions() {
             this.isShowDetail = !this.isShowDetail
+        },
+        onClickUse() {
+            directTo({
+                url: '/pages/subPackages/useCoupon/useCoupon'
+            })
         }
     }
 }
@@ -50,7 +50,7 @@ export default {
 <style lang="scss">
 .couponCenterList-container {
     background-color: #f0f4f7;
-    .myCouponCard-row {
+    .couponCenterList-row {
         position: relative;
         border-radius: 20px;
         background-color: #fff;
@@ -58,19 +58,23 @@ export default {
         margin-bottom: 30px;
         .one-row {
             display: flex;
-            border-bottom: 1px dashed #e3e3e3;
-            padding-bottom: 20px;
-            .img {
-                border-radius: 20px;
+            .left {
+                margin-right: 26px;
                 width: 148px;
                 height: 148px;
-                margin-right: 26px;
-                object-fit: cover;
+                .img {
+                    border-radius: 20px;
+                    width: 148px;
+                    height: 148px;
+                    margin-right: 26px;
+                }
             }
             .right {
+                flex: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                position: relative;
                 .name {
                     color: #000;
                     font-weight: 500;
@@ -82,59 +86,51 @@ export default {
                     font-weight: 500;
                     font-size: 20px;
                 }
-            }
-        }
-        .two-row {
-            transition: all 0.8s cubic-bezier(0.55, 0, 0.1, 1);
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            align-items: center;
-            .instructions {
-                display: flex;
-                align-items: center;
-                color: #999;
-                font-size: 20px;
-                .instructions-img {
-                    margin-left: 20px;
-                    width: 14px;
-                    height: 8px;
+                .use-class {
+                    background-color: #5588ed;
+                    position: absolute;
+                    bottom: 20px;
+                    right: 0px;
+                    width: 134px;
+                    height: 44px;
+                    border-radius: 20px;
+                    border: 2px solid #5588ed;
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 48px;
+                    text-align: center;
+                }
+                .get-class {
+                    position: absolute;
+                    bottom: 20px;
+                    right: 0px;
+                    width: 134px;
+                    height: 44px;
+                    border-radius: 20px;
+                    border: 2px solid #5588ed;
+                    color: #5588ed;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 48px;
+                    text-align: center;
+                }
+                .guoqi-class {
+                    position: absolute;
+                    bottom: 20px;
+                    right: 0px;
+                    width: 134px;
+                    height: 44px;
+                    border-radius: 20px;
+                    border: 2px solid #e3e3e3;
+                    background-color: #e3e3e3;
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 48px;
+                    text-align: center;
                 }
             }
-            .normal-button {
-                margin-right: 14px;
-                color: #fff;
-                background-color: #5790ee;
-                border-radius: 20px;
-                font-size: 24px;
-                width: 168px;
-                line-height: 44px;
-                height: 44px;
-                text-align: center;
-            }
-            .active-button {
-                color: #5790ee;
-                border: 2px solid #5790ee;
-                background-color: #fff;
-                border-radius: 20px;
-                font-size: 24px;
-                width: 168px;
-                line-height: 43px;
-                height: 43px;
-                text-align: center;
-            }
-        }
-        .three-row {
-            margin-top: 12px;
-            font-size: 20px;
-            color: #999999;
-        }
-        .guoqi-class {
-            position: absolute;
-            top: 0px;
-            right: 34px;
-            width: 168px;
-            height: 40px;
         }
     }
 }

@@ -1,18 +1,32 @@
 <template>
   <div class="authorization-container">
-    <div class="welcome">欢迎使用 海昌小程序</div>
-    <div class="prompt">授权微信头像、昵称 </div>
-    <div class="prompt">为提供优质服务, 小程序需要获取你的以下信息:</div>
-    <div class="prompt">· 你的公开信息(头像、昵称等)</div>
-    <button class="auth-button" open-type="getUserInfo" @click="gotoGetUserInfo">授权进入小程序</button>
-    <div class="agree">
-      <AtCheckbox :onChange="onClickCheckbox" :options="checkboxOption" :selectedList="checkedList" />
+    <div class="top">
+      <img class="logo" src="@/assets/image/global/logo.png" alt="">
+    </div>
+    <div class="bottom">
+      <div class="auth-prompt">授权微信头像、昵称</div>
+      <div class="prompt">
+        <div>为提供优质服务, 小程序需要获取你的以下信息:</div>
+        <div>您的公开信息(头像、昵称等)</div>
+      </div>
+      <button class="auth-button" open-type="getUserInfo" @click="gotoGetUserInfo">授权进入会员中心</button>
+      <div class="agree-container">
+        <div class="quan" @click="onClickAgree" v-if="!isChecked"></div>
+        <div class="active-quan" @click="onClickAgree" v-else></div>
+        <div class="agree">
+          我已经阅读并同意
+          <span class="book" @click="onClickHuiyuanzhangcheng">《会员章程》</span>
+          及
+          <span class="book" @click="onClickYinsizhengce">《隐私政策》</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Taro from '@tarojs/taro'
+import { OSS_URL } from '@/utils/globalConfig'
 import { directTo, directBack } from '@/utils/vapiDispatcher'
 import request from '@/utils/network'
 import { AtCheckbox } from 'taro-ui-vue'
@@ -24,6 +38,8 @@ export default {
     },
     data() {
         return {
+            isChecked: false,
+            backgroundImg: '@/assets/image/global/logo.png',
             checkedList: ['1'],
             checkboxOption: [
                 {
@@ -37,7 +53,7 @@ export default {
     methods: {
         // 1-吊起授权弹框 保存用户信息
         gotoGetUserInfo() {
-            if (this.checkedList.length != 0) {
+            if (this.isChecked) {
                 Taro.getUserProfile({
                     lang: 'zh_CN',
                     desc: '获取您的昵称和头像',
@@ -129,8 +145,14 @@ export default {
                 })
             }
         },
-        onClickCheckbox(e) {
-            this.checkedList = e
+        onClickAgree() {
+            this.isChecked = !this.isChecked
+        },
+        onClickHuiyuanzhangcheng() {
+            console.log('会员章程')
+        },
+        onClickYinsizhengce() {
+            console.log('隐私政策')
         }
     }
 }
@@ -138,43 +160,95 @@ export default {
 
 <style lang="less">
 .authorization-container {
+    position: relative;
     background-color: #fff;
     width: 100%;
-    margin-top: 40px;
-    .welcome {
-        padding-left: 30px;
-        font-size: 44px;
-        color: #333;
-    }
-    .prompt {
-        padding-left: 30px;
-        margin-top: 20px;
-        font-size: 30px;
-        color: #91979d;
+    height: 100vh;
+    .top {
+        width: 100%;
+        position: absolute;
+        top: 200px;
+        display: flex;
+        .logo {
+            margin: 0 auto;
+            height: 400px;
+        }
     }
 
-    .logo {
-        width: 100%;
-        margin-top: 60px;
-        object-fit: cover;
-    }
-    .auth-button {
-        margin: 30px 50px 0;
-        color: #fff;
-        background-color: #b92a34;
-        text-align: center;
-        border-radius: 50px;
-        font-size: 30px;
-        font-weight: 400;
-    }
-    .agree {
+    .bottom {
         position: absolute;
-        bottom: 40px;
-        .at-checkbox__title {
-            font-size: 24px;
+        left: 0px;
+        right: 0px;
+        bottom: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .auth-prompt {
+            font-size: 36px;
+            font-weight: 600;
+            color: #000000;
         }
-        .at-checkbox__option-cnt {
+        .prompt {
+            font-size: 28px;
+            font-weight: 400;
+            color: #999999;
+            margin: 32px 0;
+        }
+        .auth-button {
+            height: 96px;
+            line-height: 96px;
+            width: 600px;
+            color: #fff;
+            background-color: #5588ec;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 30px;
+            font-weight: 400;
+        }
+        .agree-container {
+            margin: 32px 0;
+            display: flex;
+            width: 100%;
             align-items: center;
+            justify-content: center;
+
+            .active-quan {
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                border: 2px solid #5588ec;
+                background: #5588ec;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .active-quan::before {
+                content: '';
+                display: block;
+                width: 17px;
+                height: 10px;
+                // color: #fff;
+                border: 3px solid #fff;
+                border-right: none;
+                border-top: none;
+                transform: rotate(-45deg) translate(2px, -3px);
+            }
+            .quan {
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                border: 2px solid #999999;
+            }
+            .agree {
+                margin-left: 12px;
+                color: #999999;
+                font-size: 24px;
+                display: flex;
+                justify-content: center;
+                .book {
+                    color: #ff7834;
+                }
+            }
         }
     }
 }

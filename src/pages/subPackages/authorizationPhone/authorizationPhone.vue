@@ -1,16 +1,22 @@
 <template>
-  <div class="authorization-container">
-    <div class="welcome">欢迎使用 海昌小程序</div>
-    <div class="prompt">立即登录，享受优质服务</div>
+  <div class="authorizationPhone-container">
+    <div class="top">
+      <img class="logo" src="@/assets/image/global/logo.png" alt="">
+    </div>
+    <div class="bottom">
+      <button class="auth-button" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">微信用户一键登录</button>
+      <button class="other-button" @click="onClickCustomPhone">使用其他手机号</button>
+    </div>
+    <!-- <div class="welcome">欢迎使用 海昌小程序</div>
+    <div class="prompt">立即登录，享受优质服务</div> -->
     <!-- <img class="logo" src="../../../assets/image/home/guanggao1.jpg" alt=""> -->
-    <div class="user-info">
+    <!-- <div class="user-info">
       <div class="user-info-avatar">
-        <!-- <open-data type="userAvatarUrl"></open-data> -->
         <img class="user-info-icon" :src="userInfo.avatar" alt="">
       </div>
     </div>
     <button class="auth-button" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">微信用户一键登录</button>
-    <button class="auth-button" @click="onClickCustomPhone">手机号码登录</button>
+    <button class="auth-button" @click="onClickCustomPhone">手机号码登录</button> -->
   </div>
 </template>
 
@@ -47,15 +53,15 @@ export default {
                         code: params.code
                     }
                 })
-                if(res.code == 0){
+                if (res.code == 0) {
                     this.registerAccount(res.data.phoneNumber)
                 } else {
                     Taro.showToast({
-                    title: res.message,
-                    icon: 'none',
-                    mask: 'true',
-                    duration: 1500
-                })
+                        title: res.message,
+                        icon: 'none',
+                        mask: 'true',
+                        duration: 1500
+                    })
                 }
             }
         },
@@ -113,53 +119,55 @@ export default {
 </script>
 
 <style lang="less">
-.authorization-container {
-    background-color: white;
+.authorizationPhone-container {
+    position: relative;
+    background-color: #fff;
     width: 100%;
-    margin-top: 40px;
-    .welcome {
-        padding-left: 30px;
-        font-size: 44px;
-        color: #333;
-    }
-    .prompt {
-        padding-left: 30px;
-        margin-top: 20px;
-        font-size: 30px;
-        color: #91979d;
+    height: 100vh;
+    .top {
+        width: 100%;
+        position: absolute;
+        top: 200px;
+        display: flex;
+        .logo {
+            margin: 0 auto;
+            height: 400px;
+        }
     }
 
-    .user-info {
-        margin: 80px 0;
-        position: relative;
-        width: 100%;
-        height: 200px;
+    .bottom {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 120px;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        .user-info-avatar {
-            overflow: hidden;
-            display: block;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-            border-radius: 50%;
-            border: 2px solid #fff;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        .auth-button {
+            height: 96px;
+            line-height: 96px;
+            width: 600px;
+            color: #fff;
+            background-color: #5588ec;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 30px;
+            font-weight: 400;
         }
-        .user-info-icon {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        .other-button {
+            margin: 36px;
+            height: 96px;
+            line-height: 96px;
+            width: 600px;
+            color: #5588ec;
+            border: 2px solid #5588ec;
+            background-color: #f0f2f5;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 30px;
+            font-weight: 400;
         }
-    }
-    .auth-button {
-        margin: 30px 50px 0;
-        color: #fff;
-        background-color: #80c684;
-        text-align: center;
-        border-radius: 50px;
-        font-size: 30px;
-        font-weight: 400;
     }
 }
 </style>

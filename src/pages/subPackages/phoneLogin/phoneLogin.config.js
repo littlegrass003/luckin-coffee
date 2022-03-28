@@ -1,3 +1,4 @@
 export default {
-  navigationBarTitleText: '',
+  navigationBarTitleText: '手机号登录',
+  disableScroll: true
 }

@@ -30,7 +30,7 @@ export default {
     .one {
         padding: 32px 60px;
         border-radius: 20px;
-        height: calc(100vh - 60px);
+        height: calc(100vh - 160px);
         background: rgba(255, 255, 255, 0.4);
         // background: ;
         .code-info {

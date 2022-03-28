@@ -1,3 +1,4 @@
 export default {
-  navigationBarTitleText: '实名认证'
+  navigationBarTitleText: '实名认证',
+  disableScroll: true
 }

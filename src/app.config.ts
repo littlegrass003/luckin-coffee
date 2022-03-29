@@ -12,6 +12,10 @@ export default {
                 'couponCenter/couponCenter',
                 'realName/realName',
                 'useCoupon/useCoupon',
+                'setup/setup',
+                'personal/personal',
+                'interests/interests',
+                'vipDetail/vipDetail'
             ]
         }
     ],

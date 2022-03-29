@@ -1,20 +1,29 @@
 <template>
   <div class="home-swiper-container">
-    <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true">
+    <!-- <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="true" :indicator-dots="true">
       <swiper-item class="swiper-item" v-for="(item, index) in swiperData" :key="index">
         <image :src="item" class="swiper-image" />
       </swiper-item>
-    </swiper>
+    </swiper> -->
+    <div style="margin:0 auto; width:100%; text-align:center; font-size:40px;" @click="onClickCardDetail">VIP Detail</div>
   </div>
 </template>
 
 <script>
+import { directTo } from '@/utils/vapiDispatcher'
 export default {
     name: 'HomeSwiper',
     props: {
         swiperData: {
             type: Array,
             default: {}
+        }
+    },
+    methods: {
+        onClickCardDetail() {
+            directTo({
+                url: '/pages/subPackages/vipDetail/vipDetail'
+            })
         }
     }
 }

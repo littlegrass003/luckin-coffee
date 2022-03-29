@@ -16,7 +16,7 @@
           <img v-if="isShowDetail" class="instructions-img" src="@/assets/image/global/arrow_shang.png" alt="">
           <img v-else class="instructions-img" src="@/assets/image/global/arrow_xia.png" alt="">
         </div>
-        <div :class="[isShowDetail ? 'active-button' : 'normal-button']">使用核销</div>
+        <div @click="useHexiao" :class="[isShowDetail ? 'active-button' : 'normal-button']">使用核销</div>
       </div>
       <div class="three-row" v-show="isShowDetail">{{item.detail}}
       </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { directTo } from '@/utils/vapiDispatcher'
 export default {
     name: 'myCouponCard',
     props: {
@@ -42,6 +43,11 @@ export default {
     methods: {
         onClickInstructions() {
             this.isShowDetail = !this.isShowDetail
+        },
+        useHexiao() {
+            directTo({
+                url: '/pages/subPackages/useCoupon/useCoupon'
+            })
         }
     }
 }
@@ -102,7 +108,7 @@ export default {
                 }
             }
             .normal-button {
-              margin-right: 14px;
+                margin-right: 14px;
                 color: #fff;
                 background-color: #5790ee;
                 border-radius: 20px;
@@ -129,14 +135,13 @@ export default {
             font-size: 20px;
             color: #999999;
         }
-        .guoqi-class{
-          position: absolute;
-          top: 0px;
-          right: 34px;
-          width: 168px;
-          height: 40px;
+        .guoqi-class {
+            position: absolute;
+            top: 0px;
+            right: 34px;
+            width: 168px;
+            height: 40px;
         }
     }
-    
 }
 </style>

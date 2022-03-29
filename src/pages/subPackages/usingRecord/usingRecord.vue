@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { viewingArea } from '@/utils/globalConfig'
 import Taro from '@tarojs/taro'
 import UsingRecordCard from './components/UsingRecordCard'
 export default {

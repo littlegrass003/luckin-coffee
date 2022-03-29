@@ -4,11 +4,11 @@
     <div class="home-top">
       <div v-if="userInfo.avatar" class="home-userinfo">
         <img @click="backLogin" class="home-top-icon" :src="userInfo.avatar" alt="">
-        <span class="home-top-name" @click="gotoCoupon">{{userInfo.nickname}}</span>
+        <span class="home-top-name" @click="onClickName">{{userInfo.nickname}}</span>
       </div>
       <div v-else class="home-userinfo">
         <img @click="backLogin" class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
-        <span class="home-top-name" @click="gotoCoupon">微信用户</span>
+        <span class="home-top-name" @click="onClickName">微信用户</span>
       </div>
     </div>
   </div>
@@ -36,9 +36,9 @@ export default {
         this.userInfo = Taro.getStorageSync('wechat_userInfo')
     },
     methods: {
-        gotoCoupon() {
+        onClickName() {
             directTo({
-                url: '/pages/subPackages/realName/realName'
+                url: '/pages/subPackages/setup/setup'
             })
         },
         onClickUpgrade() {

@@ -121,8 +121,37 @@ const couponCenterData = [
   },
 ]
 
+const interestsData = [
+  {
+    id:1,
+    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    title: "单单返现"
+  },
+  {
+    id:2,
+    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    title: "一小时达"
+  },
+  {
+    id:3,
+    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    title: "会员特权"
+  },
+  {
+    id:4,
+    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    title: "超级会员"
+  },
+  {
+    id:5,
+    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    title: "积分兑换"
+  }
+]
+
 export default {
   swipers,
   myCouponData,
-  couponCenterData
+  couponCenterData,
+  interestsData
 }

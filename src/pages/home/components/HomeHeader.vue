@@ -41,11 +41,6 @@ export default {
                 url: '/pages/subPackages/setup/setup'
             })
         },
-        onClickUpgrade() {
-            directTo({
-                url: '/pages/subPackages/homeDetail/homeDetail?id=2222'
-            })
-        },
         backLogin() {
             directTo({
                 url: '/pages/subPackages/authorization/authorization'

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-card-container" :style="{backgroundImage: 'url(' + bgc + ')', backgroundSize:'contain'}" @click="onClickItem">
+  <div class="home-card-container" :style="{backgroundImage: 'url(' + bgc + ')', backgroundSize:'100% 100%'}" @click="onClickItem">
     <div class="title">{{title}}</div>
     <div class="sub-title">{{subTitle}}</div>
   </div>
@@ -29,11 +29,9 @@ export default {
     },
     data() {
         return {
-            backgroundImg: ''
         }
     },
     mounted() {
-        this.backgroundImg = this.bgc
     },
     methods: {
         // type == center 领券中心

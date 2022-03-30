@@ -4,19 +4,14 @@
       <img class="logo" src="@/assets/image/global/logo.png" alt="">
     </div>
     <div class="bottom">
-      <button class="auth-button" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">微信用户一键登录</button>
+      <div class="wechat-container">
+        <button class="auth-button" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">
+          <img class="wechat-logo" src="@/assets/image/login/wechat_logo.png" alt="">
+          <span style="margin-left:40px">微信用户一键登录</span>
+        </button>
+      </div>
       <button class="other-button" @click="onClickCustomPhone">使用其他手机号</button>
     </div>
-    <!-- <div class="welcome">欢迎使用 海昌小程序</div>
-    <div class="prompt">立即登录，享受优质服务</div> -->
-    <!-- <img class="logo" src="../../../assets/image/home/guanggao1.jpg" alt=""> -->
-    <!-- <div class="user-info">
-      <div class="user-info-avatar">
-        <img class="user-info-icon" :src="userInfo.avatar" alt="">
-      </div>
-    </div>
-    <button class="auth-button" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">微信用户一键登录</button>
-    <button class="auth-button" @click="onClickCustomPhone">手机号码登录</button> -->
   </div>
 </template>
 
@@ -143,16 +138,29 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        .auth-button {
-            height: 96px;
-            line-height: 96px;
-            width: 600px;
-            color: #fff;
-            background-color: #5588ec;
-            text-align: center;
-            border-radius: 10px;
-            font-size: 30px;
-            font-weight: 400;
+
+        .wechat-container {
+            position: relative;
+            .auth-button {
+                height: 96px;
+                line-height: 96px;
+                width: 600px;
+                color: #fff;
+                background-color: #5588ec;
+                text-align: center;
+                border-radius: 10px;
+                font-size: 30px;
+                font-weight: 400;
+            }
+
+            .wechat-logo {
+                z-index: 100;
+                position: absolute;
+                bottom: 29px;
+                left: 150px;
+                width: 52px;
+                height: 42px;
+            }
         }
 
         .other-button {

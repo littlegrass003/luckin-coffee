@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">
+  <div class="home-container" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
     <HomeHeader />
     <HomeSwiper :swiperData="swipers" />
     <HomeCard title="领券中心" subTitle="领取更多优惠券" style="margin-top:40px" :bgc="centerBgc" type="center" />
@@ -22,6 +22,7 @@ export default {
     },
     data() {
         return {
+            backgroundImg: OSS_URL + '/home/home_bg.png',
             centerBgc: OSS_URL + '/home/center.png',
             bagBgc: OSS_URL + '/home/bag.png',
             ...pageData

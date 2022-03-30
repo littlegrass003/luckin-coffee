@@ -5,7 +5,7 @@
         <image :src="item" class="swiper-image" />
       </swiper-item>
     </swiper> -->
-    <div style="margin:0 auto; width:100%; text-align:center; font-size:40px;" @click="onClickCardDetail">VIP Detail</div>
+    <div style="margin:0 auto; width:100%; text-align:center; font-size:40px;" @click="onClickCardDetail">Card Detail</div>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
     methods: {
         onClickCardDetail() {
             directTo({
-                url: '/pages/subPackages/vipDetail/vipDetail'
+                url: '/pages/subPackages/cardDetail/cardDetail'
             })
         }
     }

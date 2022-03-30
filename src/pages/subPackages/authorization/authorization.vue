@@ -95,7 +95,8 @@ export default {
             })
             if (res.code == 0) {
                 Taro.setStorageSync('wechat_openId', res.data.openid)
-                this.businessLogin(res.data.openid)
+                // this.businessLogin(res.data.openid)
+                this.testServer(res.data.openid)
             } else {
                 Taro.showToast({
                     title: res.errorMsg,
@@ -103,6 +104,15 @@ export default {
                     duration: 2000
                 })
             }
+        },
+
+        async testServer(openId){
+            const res = await request({
+                method: 'POST',
+                url:'/member/auth/user/checkUser',
+                data: { openId: openId }
+            })
+            console.log('testServer==>', res)
         },
 
         // 4- 业务登录

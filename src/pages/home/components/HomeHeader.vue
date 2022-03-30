@@ -1,14 +1,20 @@
 <template>
-  <div class="home-header" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
+  <div class="home-header">
     <div class="navigation" :style="{height:navHeight + 'px'}"></div>
     <div class="home-top">
       <div v-if="userInfo.avatar" class="home-userinfo">
-        <img @click="backLogin" class="home-top-icon" :src="userInfo.avatar" alt="">
-        <span class="home-top-name" @click="onClickName">{{userInfo.nickname}}</span>
+        <img @click="gotoAuthorization" class="home-top-icon" :src="userInfo.avatar" alt="">
+        <div class="home-top-right">
+          <span class="home-top-name" @click="onClickName">{{userInfo.nickname}}</span>
+          <img class="home-top-shiming" src="@/assets/image/home/yi-shiming.png" alt="">
+        </div>
       </div>
       <div v-else class="home-userinfo">
-        <img @click="backLogin" class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
-        <span class="home-top-name" @click="onClickName">微信用户</span>
+        <img @click="gotoAuthorization" class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
+        <div class="home-top-right">
+          <span class="home-top-name" @click="onClickName">登录/注册</span>
+          <img class="home-top-shiming" src="@/assets/image/home/no-shiming.png" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -41,7 +47,7 @@ export default {
                 url: '/pages/subPackages/setup/setup'
             })
         },
-        backLogin() {
+        gotoAuthorization() {
             directTo({
                 url: '/pages/subPackages/authorization/authorization'
             })
@@ -65,17 +71,26 @@ export default {
         .home-userinfo {
             display: flex;
             align-items: center;
+
             .home-top-icon {
                 width: 100px;
                 height: 100px;
                 object-fit: cover;
                 border-radius: 50%;
             }
+            .home-top-right {
+                display: flex;
+                flex-direction: column;
+                .home-top-shiming {
+                    width: 94px;
+                    height: 28px;
+                    margin-left: 30px;
+                }
+            }
             .home-top-name {
                 color: #fff;
                 margin-left: 30px;
                 font-size: 48px;
-                max-width: 200px;
             }
         }
     }

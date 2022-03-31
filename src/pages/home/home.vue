@@ -2,7 +2,7 @@
   <div class="home-container" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
     <HomeHeader />
     <HomeSwiper :cardData="homeData" />
-    <HomeCard title="领券中心" subTitle="领取更多优惠券" style="margin-top:40px" :bgc="centerBgc" type="center" />
+    <HomeCard title="领券中心" subTitle="领取更多优惠券" style="margin-top:20px" :bgc="centerBgc" type="center" />
     <HomeCard title="我的优惠券" subTitle="查看我的优惠券" style="margin-top:20px" :bgc="bagBgc" type="bag" />
   </div>
 </template>

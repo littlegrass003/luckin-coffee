@@ -106,6 +106,7 @@ export default {
         },
 
         async testServer(openId){
+            Taro.showLoading()
             const res = await request({
                 method: 'POST',
                 url:'/member/auth/user/checkUser',
@@ -113,6 +114,12 @@ export default {
                 header:{
                     'content-type':'application/x-www-form-urlencoded',
                 }
+            })
+            Taro.hideLoading()
+            Taro.showToast({
+                title:res.message,
+                icon:'none',
+                mask:'true'
             })
             console.log('testServer==>', res)
         },

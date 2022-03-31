@@ -1,7 +1,8 @@
 <template>
   <div class="home-swiper-container" @click="onClickCardDetail">
-    <swiper class="swiper" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="false" :indicator-dots="false">
-      <swiper-item class="card" v-for="(item, index) in cardData" :key="index">
+    <swiper class="swiper" :previous-margin="24" :next-margin="24" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="false" :indicator-dots="false" @change="onClickSwiperChange" @animationfinish="onClickSwiperFinish">
+      <!-- @transition="onClickSwiperTransition" -->
+      <swiper-item v-for="(item, index) in cardData" :key="index" class='card'>
         <div class="card-top" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
           <div class="card-title">{{item.card_name}}</div>
           <div class="card-info">
@@ -15,15 +16,18 @@
             </div>
           </div>
         </div>
-        <image class="card-qrcode" src="@/assets/image/card/qrcode.png" @click="onClickQrCode" />
+        <!-- <image class="card-qrcode" mode="aspectFill" src="@/assets/image/card/qrcode.png" @click="onClickQrCode" /> -->
+
         <div class="card-bottom" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
-          <div v-for="(quanyiItem, quanyiIndex) in item.quanyiArr" :key="quanyiIndex">
-            <img class="quanyiItem-img" :src="quanyiItem.imgUrl" alt="">
+          <div class="quanyi-item" v-for="(quanyiItem) in item.quanyiArr" :key="quanyiItem.quanyi_id">
+            <div class="quanyi-scroll">
+              <img class="quanyi-item-img" :src="quanyiItem.imgUrl" alt="">
+              <div class="quanyi-item-title">{{quanyiItem.value}}</div>
+            </div>
           </div>
         </div>
       </swiper-item>
     </swiper>
-    <!-- <div style="margin:0 auto; width:100%; text-align:center; font-size:40px;" @click="onClickCardDetail">Card Detail</div> -->
   </div>
 </template>
 
@@ -42,7 +46,8 @@ export default {
     data() {
         return {
             backgroundImg: OSS_URL + '/card/card-yifu.png',
-            cardImg: OSS_URL + '/card/card-detail-bg1.png'
+            cardImg: OSS_URL + '/card/card-detail-bg1.png',
+            currentIndex: 0
         }
     },
     methods: {
@@ -57,6 +62,17 @@ export default {
                 icon: 'none',
                 mask: 'true'
             })
+        },
+        onClickSwiperChange(e) {
+            console.log('changeCurrent ==> ', e)
+            console.log('currentIndex ==> ', e.detail.current)
+            this.currentIndex = e.detail.current
+        },
+        onClickSwiperTransition(dx, dy) {
+            console.log('Transition==>', dx, dy)
+        },
+        onClickSwiperFinish(dxy) {
+            console.log('finishDXY==>', dxy)
         }
     }
 }
@@ -64,7 +80,7 @@ export default {
 
 <style lang="scss">
 .home-swiper-container {
-    padding: 0 30px;
+    padding: 0px;
     border-radius: 25px;
     .swiper {
         height: 532px;
@@ -123,19 +139,32 @@ export default {
             .card-bottom {
                 position: absolute;
                 z-index: 20;
-                bottom: -25px;
+                bottom: -35px;
                 left: 0px;
                 width: 100%;
-                height: 276px;
-                background-color: red;
+                height: 307px;
+                overflow-x: scroll;
+                overflow-y: none;
                 display: flex;
-                .quanyiItem-img{
-                    width: 50px;
-                    height: 50px;
+                justify-content: space-between;
+                .quanyi-item {
+                    align-items: center;
+                    .quanyi-scroll {
+                        padding: 100px 0 34px;
+                        width: 200px;
+                        .quanyi-item-img {
+                            width: 70px;
+                            height: 70px;
+                        }
+                        .quanyi-item-title {
+                            margin-top: 10px;
+                            font-size: 24px;
+                            color: #000000;
+                        }
+                    }
                 }
             }
         }
-
     }
 }
 </style>

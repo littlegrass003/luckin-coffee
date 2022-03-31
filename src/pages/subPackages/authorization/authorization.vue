@@ -26,8 +26,7 @@
 
 <script>
 import Taro from '@tarojs/taro'
-import { OSS_URL } from '@/utils/globalConfig'
-import { directTo, directBack } from '@/utils/vapiDispatcher'
+import { directTo } from '@/utils/vapiDispatcher'
 import request from '@/utils/network'
 import { AtCheckbox } from 'taro-ui-vue'
 
@@ -110,7 +109,10 @@ export default {
             const res = await request({
                 method: 'POST',
                 url:'/member/auth/user/checkUser',
-                data: { openId: openId }
+                data: { openId: openId },
+                header:{
+                    'content-type':'application/x-www-form-urlencoded',
+                }
             })
             console.log('testServer==>', res)
         },

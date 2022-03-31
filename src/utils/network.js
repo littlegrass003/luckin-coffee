@@ -60,10 +60,9 @@ Taro.addInterceptor(Taro.interceptors.logInterceptor)
 
 // 请求(根据业务自定义)
 const request = ({ url, data = {}, method = 'get', header = {} }) => {
-
     const BASE_URL = getBaseUrl(url)
     let handleHeader = {
-        'content-type': 'application/json',
+        'content-type': header['content-type'] ? header['content-type'] : 'application/json',
         ...header
     }
 

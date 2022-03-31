@@ -59,7 +59,7 @@ export default {
 <style lang="scss">
 .home-header {
     width: 100%;
-    height: 600px;
+    height: 550px;
     .navigation {
         width: 100%;
     }

@@ -1,10 +1,10 @@
-const swipers = [
-  "http://img.zcool.cn/community/014056564bd8596ac7251c94eb5559.jpg",
-  "http://img.zcool.cn/community/01e03b58047e96a84a0e282b09e8fc.jpg",
-  "http://img.zcool.cn/community/0132dd55800bc700000059ffbe83e9.jpg@1280w_1l_2o_100sh.jpg",
-  "http://img.zcool.cn/community/0154755a2df102a80120ba3828b5af.jpg@1280w_1l_2o_100sh.jpg",
-  "http://img.zcool.cn/community/01a2a2594943d3a8012193a328e0fd.jpg@1280w_1l_2o_100sh.jpg"
-]
+// const swipers = [
+//   "http://img.zcool.cn/community/014056564bd8596ac7251c94eb5559.jpg",
+//   "http://img.zcool.cn/community/01e03b58047e96a84a0e282b09e8fc.jpg",
+//   "http://img.zcool.cn/community/0132dd55800bc700000059ffbe83e9.jpg@1280w_1l_2o_100sh.jpg",
+//   "http://img.zcool.cn/community/0154755a2df102a80120ba3828b5af.jpg@1280w_1l_2o_100sh.jpg",
+//   "http://img.zcool.cn/community/01a2a2594943d3a8012193a328e0fd.jpg@1280w_1l_2o_100sh.jpg"
+// ]
 
 const myCouponData = [
   {
@@ -150,42 +150,177 @@ const interestsData = [
 ]
 
 const cardDetail = [{
+  id: 1,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi1.png',
   value: '会员专享'
 },
 {
+  id: 2,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi2.png',
   value: '单单返现'
 },
 {
+  id: 3,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi3.png',
   value: '一小时达'
 },
 {
+  id: 4,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi4.png',
   value: '积分加倍'
 },
 {
+  id: 5,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi5.png',
   value: '超级会员'
 },
 {
+  id: 6,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi6.png',
   value: '开店赚钱'
 },
 {
+  id: 7,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi7.png',
   value: '专属客服'
 },
 {
+  id: 8,
   image: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi8.png',
   value: '敬请期待'
-},]
+}]
+
+const homeData = [
+  {
+    id: 0,
+    card_name:'海豚卡',
+    card_number:'1141 5678 9022 3277',
+    card_time:'2030/3/9',
+    card_img: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/card-detail-bg1.png',
+    quanyiArr: [{
+      quanyi_id: 1,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi1.png',
+      value: '会员专享'
+    },
+    {
+      quanyi_quanyi_id: 2,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi2.png',
+      value: '单单返现'
+    },
+    {
+      id: 3,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi3.png',
+      value: '一小时达'
+    },
+    {
+      quanyi_id: 4,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi4.png',
+      value: '积分加倍'
+    },
+    {
+      quanyi_id: 5,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi5.png',
+      value: '超级会员'
+    },
+    {
+      quanyi_id: 6,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi6.png',
+      value: '开店赚钱'
+    },
+    {
+      quanyi_id: 7,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi7.png',
+      value: '专属客服'
+    },
+    {
+      quanyi_id: 8,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi8.png',
+      value: '敬请期待'
+    }]
+  },
+  {
+    id: 1,
+    card_name:'大象卡',
+    card_number:'2241 5678 9022 4444',
+    card_time:'2030/9/22',
+    card_img: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/card-detail-bg2.png',
+    quanyiArr: [{
+      quanyi_id: 1,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi1.png',
+      value: '会员专享'
+    },
+    {
+      quanyi_id: 2,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi2.png',
+      value: '单单返现'
+    },
+    {
+      quanyi_id: 3,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi3.png',
+      value: '一小时达'
+    },
+    {
+      quanyi_id: 4,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi4.png',
+      value: '积分加倍'
+    },
+    {
+      quanyi_id: 5,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi5.png',
+      value: '超级会员'
+    },
+    {
+      quanyi_id: 6,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi6.png',
+      value: '开店赚钱'
+    },
+    {
+      quanyi_id: 7,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi7.png',
+      value: '专属客服'
+    },
+    {
+      quanyi_id: 8,
+      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi8.png',
+      value: '敬请期待'
+    }]
+  },
+]
+
+const teamsData = [
+  {
+    name: 'fjiefji0000',
+    phone: '18637382910',
+    idCard: '410703998291829300'
+  },
+  {
+    name: 'fjiefji11111',
+    phone: '18637382910',
+    idCard: '410703998291829300'
+  },
+  {
+    name: 'fjiefji22222',
+    phone: '18637382910',
+    idCard: '410703998291829300'
+  },
+  {
+    name: 'fjiefji33333',
+    phone: '18637382910',
+    idCard: '410703998291829300'
+  },
+  {
+    name: 'fjiefji44444',
+    phone: '18637382910',
+    idCard: '410703998291829300'
+  },
+]
 
 export default {
-  swipers,
+  // swipers,
   myCouponData,
   couponCenterData,
   interestsData,
-  cardDetail
+  cardDetail,
+  teamsData,
+  homeData
 }

@@ -1,17 +1,33 @@
 <template>
   <div class="cardDetail-container" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
-    <div>
-      <div class="card" :style="{ background: 'no-repeat url(' + cardImg + ')', backgroundSize:'100% 100%'}">
-        <!-- 卡片 -->
-        <img @click="onClickTransform" class="transform-img" src="@/assets/image/card/transform.png" alt="">
-        <div class="title">海豚卡</div>
-        <div class="card-number">1141 5678 9022 3277</div>
-        <div class="card-info">
-          <div class="card-info-left">
-            <div class="card-prompt1">VALID</div>
-            <div class="card-prompt2">THRU</div>
+    <div class="my3dpace">
+      <div class="pagegroup">
+        <!-- 卡片正面 -->
+        <div :class="[isTransform ? 'transform-card2' :'', 'positive-card page']" :style="{ background: 'no-repeat url(' + positiveImg + ')', backgroundSize:'100% 100%'}">
+          <img @click="onClickTransform" class="transform-img" src="@/assets/image/card/transform.png" alt="">
+          <div class="title">海豚卡</div>
+          <div class="card-number">1141 5678 9022 3277</div>
+          <div class="card-info">
+            <div class="card-info-left">
+              <div class="card-prompt1">VALID</div>
+              <div class="card-prompt2">THRU</div>
+            </div>
+            <div class="card-time">2030/3/9</div>
           </div>
-          <div class="card-time">2030/3/9</div>
+        </div>
+
+        <!-- 卡片反面 -->
+        <div :class="[isTransform ? 'transform-card1' :'', 'reverse-card page']" :style="{ background: 'no-repeat url(' + reverseImg + ')', backgroundSize:'100% 100%'}">
+          <img @click="onClickTransform" class="transform-img" src="@/assets/image/card/transform.png" alt="">
+          <div class="title">缝斯托洛夫斯基卡</div>
+          <div class="card-number">00000000000000</div>
+          <div class="card-info">
+            <div class="card-info-left">
+              <div class="card-prompt1">VALID</div>
+              <div class="card-prompt2">THRU</div>
+            </div>
+            <div class="card-time">2030/3/9</div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,6 +69,7 @@ import { AtGrid } from 'taro-ui-vue'
 import PersonCard from './components/personCard.vue'
 import { directTo } from '@/utils/vapiDispatcher'
 import { OSS_URL } from '@/utils/globalConfig'
+import Taro from '@tarojs/taro'
 export default {
     name: 'CardDetail',
     components: {
@@ -64,12 +81,15 @@ export default {
             isShowPersonInfo: false,
             isTransform: false,
             backgroundImg: OSS_URL + '/card/cardDetail_bg.png',
-            cardImg: OSS_URL + '/card/card-detail-bg1.png',
+            positiveImg: OSS_URL + '/card/card-detail-bg1.png',
+            reverseImg: OSS_URL + '/card/card-detail-bg2.png',
             ...pageData
         }
     },
     methods: {
-        onClickTransform() {},
+        onClickTransform() {
+            this.isTransform = !this.isTransform
+        },
         onClickPersonInfo() {
             this.isShowPersonInfo = !this.isShowPersonInfo
         },
@@ -87,23 +107,76 @@ export default {
 <style lang="scss">
 .cardDetail-container {
     padding: 28px 52px;
-    .card {
-        position: relative;
-        height: 280px;
-        padding: 28px 28px 54px 36px;
-        .transform-img {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            right: 28px;
-            top: 28px;
-        }
-        .title {
-            font-size: 48px;
-            font-weight: 600;
-            color: #ffffff;
+    .transform-card1 {
+        -webkit-transform: rotateY(0deg) !important;
+    }
+    .transform-card2 {
+        -webkit-transform: rotateY(180deg) !important;
+    }
+    .my3dpace {
+        -webkit-perspective: 1500;
+        -webkit-perspective-origin: 10% 10%;
+        overflow: hidden;
+        .pagegroup {
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            position: relative;
+            .page {
+                // top: 50px;
+                width: 90%;
+                height: 280px;
+                background-color: black;
+                font-weight: bold;
+                position: absolute;
+                transition: all 3s;
+                backface-visibility: hidden;
+                border-radius: 40px;
+                cursor: default;
+            }
+            .positive-card {
+                padding: 28px 28px 54px 36px;
+                -webkit-transform-origin: center;
+                // linear| ease| ease-in| ease-out| ease-in-out| cubic-bezier(n,n,n,n);
+                -webkit-transition: -webkit-transform 0.9s  cubic-bezier(0.42,0,0.58,1) ;
+                .transform-img {
+                    position: absolute;
+                    width: 80px;
+                    height: 80px;
+                    right: 28px;
+                    top: 28px;
+                }
+                .title {
+                    font-size: 48px;
+                    font-weight: 600;
+                    color: #ffffff;
+                }
+            }
+
+            .reverse-card {
+                height: 280px;
+                padding: 28px 28px 54px 36px;
+                -webkit-transform-origin: center;
+                -webkit-transition: -webkit-transform 1s linear;
+                -webkit-transform: rotateY(180deg);
+                .transform-img {
+                    position: absolute;
+                    width: 80px;
+                    height: 80px;
+                    right: 28px;
+                    top: 28px;
+                }
+                .title {
+                    font-size: 48px;
+                    font-weight: 600;
+                    color: #ffffff;
+                }
+            }
         }
     }
+
     .quanyi {
         margin-top: -30px;
         border-radius: 20px;

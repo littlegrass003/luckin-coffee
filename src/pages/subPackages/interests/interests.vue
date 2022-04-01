@@ -1,30 +1,39 @@
 <template>
   <div class="interests-container">
     <div class="top">
-      <InterestsHorizontal :listData="interestsData" />
+      <InterestsHorizontal :listData="interestsData" @switchItem="onClikHorizontalItem" />
     </div>
     <div class="bottom">
-      <InterestsList :listData="couponCenterData" />
+      <InterestsList v-if="pageIndex == 0" :listData="couponCenterData" />
+      <InterestsVip v-if="pageIndex == 1"/>
     </div>
   </div>
 </template>
 
 <script>
 import InterestsHorizontal from './components/interestsHorizontal'
-import InterestsList from './components/InterestsList'
+import InterestsList from './components/interestsList'
+import InterestsVip from './components/interestsVip'
 import pageData from '@/utils/mock/homeData'
 
 export default {
-  name:"Interests",
-      components: {
+    name: 'Interests',
+    components: {
         InterestsHorizontal,
-        InterestsList
+        InterestsList,
+        InterestsVip
     },
     data() {
         return {
             ...pageData,
+            pageIndex: 0
         }
     },
+    methods: {
+        onClikHorizontalItem(e) {
+            this.pageIndex = e
+        }
+    }
 }
 </script>
 

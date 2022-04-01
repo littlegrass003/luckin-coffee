@@ -1,21 +1,21 @@
 <template>
   <div>
     <div class="interestsHorizontal-container" v-if="judgeLength > 5">
-      <div :class="[judgeLength > 5 ? 'shao-content' : 'more-content']" v-for="(item, index) in listData" :key="index">
-        <img class="img-class" :src="item.imgUrl" alt="">
-        <div class="title">{{item.title}}</div>
+      <div :class="[judgeLength > 5 ? 'shao-content' : 'more-content']" v-for="(item, index) in listData" :key="index" @click="onClickItem(item)">
+        <img :class="[currentIndex == index ? 'sel-img-class' : 'img-class']" :src="item.imgUrl" alt="">
+        <div :class="[currentIndex == index ? 'sel-title' : 'title']">{{item.title}}</div>
       </div>
     </div>
     <div class="interestsHorizontal-container" v-else-if="judgeLength == 5 " style="justify-content: space-around">
       <div :class="[judgeLength > 5 ? 'shao-content' : 'more-content']" v-for="(item, index) in listData" :key="index" @click="onClickItem(item)">
-        <img class="img-class" :src="item.imgUrl" alt="">
-        <div class="title">{{item.title}}</div>
+        <img :class="[currentIndex == index ? 'sel-img-class' : 'img-class']" :src="item.imgUrl" alt="">
+        <div :class="[currentIndex == index ? 'sel-title' : 'title']">{{item.title}}</div>
       </div>
     </div>
     <div class="interestsHorizontal-container" v-else>
-      <div :class="[judgeLength > 5 ? 'shao-content' : 'more-content']" v-for="(item, index) in listData" :key="index">
-        <img class="img-class" :src="item.imgUrl" alt="">
-        <div class="title">{{item.title}}</div>
+      <div :class="[judgeLength > 5 ? 'shao-content' : 'more-content']" v-for="(item, index) in listData" :key="index" @click="onClickItem(item)">
+        <img :class="[currentIndex == index ? 'sel-img-class' : 'img-class']" :src="item.imgUrl" alt="">
+        <div :class="[currentIndex == index ? 'sel-title' : 'title']">{{item.title}}</div>
       </div>
     </div>
   </div>
@@ -32,7 +32,8 @@ export default {
     },
     data() {
         return {
-            judgeLength: 5
+            judgeLength: 5,
+            currentIndex: 0
         }
     },
     mounted() {
@@ -41,7 +42,9 @@ export default {
     },
     methods: {
         onClickItem(e) {
-            console.log(e)
+            this.currentIndex = e.id
+            this.currentIndex = this.currentIndex - 1
+            this.$emit('switchItem', this.currentIndex)
         }
     }
 }
@@ -66,11 +69,21 @@ export default {
             width: 68px;
             height: 68px;
             border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .sel-img-class {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
         .title {
-            margin-top: 20px;
             font-size: 24px;
             color: rgba(0, 0, 0, 0.5);
+        }
+        .sel-title {
+            font-size: 24px;
+            color: #000;
         }
     }
 
@@ -88,11 +101,21 @@ export default {
             width: 68px;
             height: 68px;
             border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .sel-img-class {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
         .title {
-            margin-top: 20px;
             font-size: 24px;
             color: rgba(0, 0, 0, 0.5);
+        }
+        .sel-title {
+            font-size: 24px;
+            color: #000;
         }
     }
 

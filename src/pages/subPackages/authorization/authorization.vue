@@ -94,8 +94,8 @@ export default {
             })
             if (res.code == 0) {
                 Taro.setStorageSync('wechat_openId', res.data.openid)
-                // this.businessLogin(res.data.openid)
-                this.testServer(res.data.openid)
+                this.businessLogin(res.data.openid)
+                // this.testServer(res.data.openid)
             } else {
                 Taro.showToast({
                     title: res.errorMsg,

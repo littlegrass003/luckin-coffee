@@ -124,27 +124,27 @@ const couponCenterData = [
 const interestsData = [
   {
     id: 1,
-    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    imgUrl: "http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi1.png",
     title: "单单返现"
   },
   {
     id: 2,
-    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    imgUrl: "http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi2.png",
     title: "一小时达"
   },
   {
     id: 3,
-    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    imgUrl: "http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi3.png",
     title: "会员特权"
   },
   {
     id: 4,
-    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    imgUrl: "http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi4.png",
     title: "超级会员"
   },
   {
     id: 5,
-    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.cnhubei.com%2Fxw%2Fwuhan%2F201604%2FW020160420642092910287.jpg&refer=http%3A%2F%2Fnews.cnhubei.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650786517&t=633cc6ccaca06f9310ef4fa28a222419",
+    imgUrl: "http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi5.png",
     title: "积分兑换"
   }
 ]
@@ -193,9 +193,9 @@ const cardDetail = [{
 const homeData = [
   {
     id: 0,
-    card_name:'海豚卡',
-    card_number:'1141 5678 9022 3277',
-    card_time:'2030/3/9',
+    card_name: '海豚卡',
+    card_number: '1141 5678 9022 3277',
+    card_time: '2030/3/9',
     card_img: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/card-detail-bg1.png',
     quanyiArr: [{
       quanyi_id: 1,
@@ -240,9 +240,9 @@ const homeData = [
   },
   {
     id: 1,
-    card_name:'大象卡',
-    card_number:'2241 5678 9022 4444',
-    card_time:'2030/9/22',
+    card_name: '大象卡',
+    card_number: '2241 5678 9022 4444',
+    card_time: '2030/9/22',
     card_img: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/card-detail-bg2.png',
     quanyiArr: [{
       quanyi_id: 1,
@@ -285,11 +285,11 @@ const homeData = [
       value: '敬请期待'
     }]
   }
-  ,{
+  , {
     id: 2,
-    card_name:'别管什么卡',
-    card_number:'2241 5678 9022 6666',
-    card_time:'2030/9/22',
+    card_name: '别管什么卡',
+    card_number: '2241 5678 9022 6666',
+    card_time: '2030/9/22',
     card_img: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/card-detail-bg2.png',
     quanyiArr: [{
       quanyi_id: 1,
@@ -342,6 +342,78 @@ const teamsData = [
   },
 ]
 
+const historyData = [
+  {
+    id: 0,
+    name: 'rity',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 1,
+    name: 'rity1',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 2,
+    name: 'rity2',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  }, {
+    id: 3,
+    name: 'rity',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 4,
+    name: 'rity1',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 5,
+    name: 'rity2',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  }, {
+    id: 6,
+    name: 'rity',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 7,
+    name: 'rity1',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 8,
+    name: 'rity2',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  }, {
+    id: 9,
+    name: 'rity',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 10,
+    name: 'rity1',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+  {
+    id: 11,
+    name: 'rity2',
+    idCard: '401929182873718291',
+    time: '2022/03/01 17:22:03'
+  },
+]
+
 export default {
   // swipers,
   myCouponData,
@@ -349,5 +421,6 @@ export default {
   interestsData,
   cardDetail,
   teamsData,
-  homeData
+  homeData,
+  historyData
 }

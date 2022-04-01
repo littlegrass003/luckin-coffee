@@ -1,8 +1,8 @@
 <template>
-  <div class="useCoupon-container">
+  <div class="useInterests-container">
     <div class="one">
       <div class="code-info">
-        <div class="title">可爱兔子毛绒公仔陪玩伴侣创意玩具</div>
+        <div class="title">生日月礼物</div>
         <div class="time">2022.3.10 12:00 - 2023.3.9 12:00</div>
         <canvas style="width:220px; height:220px; background:#fff;" canvas-id="mycanvas" />
         <div class="code">核销码：0782739373920</div>
@@ -21,14 +21,6 @@
             </div>
           </div>
         </div>
-        <div class="person-class" v-for="(item,index) in personInfo" :key="index">
-          <div class="name">{{item.name}}</div>
-          <div class="card-num">{{item.cardNum}}</div>
-        </div>
-      </div>
-      <div class="instructions">
-        <div class="title">优惠券使用说明</div>
-        <div class="subtitle">优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本优惠券使用说明文本</div>
       </div>
     </div>
   </div>
@@ -38,27 +30,9 @@
 import QR from '@/utils/qrcode'
 import Taro from '@tarojs/taro'
 export default {
-    name: 'UseCoupon',
+    name: 'UseInterests',
     data() {
         return {
-            personInfo: [
-                {
-                    name: 'qwer',
-                    cardNum: 211282196104057836
-                },
-                {
-                    name: '222',
-                    cardNum: 211282196104057836
-                },
-                {
-                    name: '555',
-                    cardNum: 211282196104057836
-                },
-                {
-                    name: '1111',
-                    cardNum: 211282196104057836
-                }
-            ],
             imagePath: ''
         }
     },
@@ -90,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss">
-.useCoupon-container {
+.useInterests-container {
     padding: 28px 32px 124px;
     background: #f0f4f7;
     border-radius: 20px;
@@ -169,27 +143,6 @@ export default {
                         margin-bottom: 40px;
                     }
                 }
-            }
-            .person-class {
-                margin-top: 12px;
-                display: flex;
-                justify-content: space-between;
-                font-size: 24px;
-                color: #999999;
-            }
-        }
-        .instructions {
-            margin-top: 30px;
-            .title {
-                font-size: 28px;
-                font-weight: 500;
-                color: #999999;
-            }
-            .subtitle {
-                margin-top: 14px;
-                font-size: 24px;
-                font-weight: 400;
-                color: #999999;
             }
         }
     }

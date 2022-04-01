@@ -15,7 +15,9 @@ export default {
                 'setup/setup',
                 'personal/personal',
                 'interests/interests',
-                'cardDetail/cardDetail'
+                'cardDetail/cardDetail',
+                'useInterests/useInterests',
+                'changeHistory/changeHistory'
             ]
         }
     ],

@@ -11,7 +11,7 @@
         <div class="title">关联会员卡信息</div>
         <div class="card-content">
           <div class="left">
-            <img class="left-img" src="@/assets/image/tempImg/smallcard.png" alt="">
+            <img class="left-img" src="@/assets/image/tempImg/coupon_small.png" alt="">
           </div>
           <div class="right">
             <div class="right-title">海豚卡</div>

@@ -19,15 +19,7 @@
         <!-- 卡片反面 -->
         <div :class="[isTransform ? 'transform-card1' :'', 'reverse-card page']" :style="{ background: 'no-repeat url(' + reverseImg + ')', backgroundSize:'100% 100%'}">
           <img @click="onClickTransform" class="transform-img" src="@/assets/image/card/transform.png" alt="">
-          <div class="title">缝斯托洛夫斯基卡</div>
-          <div class="card-number">00000000000000</div>
-          <div class="card-info">
-            <div class="card-info-left">
-              <div class="card-prompt1">VALID</div>
-              <div class="card-prompt2">THRU</div>
-            </div>
-            <div class="card-time">2030/3/9</div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -82,7 +74,7 @@ export default {
             isTransform: false,
             backgroundImg: OSS_URL + '/card/cardDetail_bg.png',
             positiveImg: OSS_URL + '/card/card-detail-bg1.png',
-            reverseImg: OSS_URL + '/card/card-detail-bg2.png',
+            reverseImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201804%2F30%2F2018043001534_GVTtR.thumb.700_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1651372821&t=d1e27299017bf8926c046fcc9ed6ef7f',
             ...pageData
         }
     },
@@ -139,8 +131,8 @@ export default {
             .positive-card {
                 padding: 28px 28px 54px 36px;
                 -webkit-transform-origin: center;
-                // linear| ease| ease-in| ease-out| ease-in-out| cubic-bezier(n,n,n,n);
-                -webkit-transition: -webkit-transform 0.9s  cubic-bezier(0.42,0,0.58,1) ;
+                // linear| ease| ease-in| ease-out| ease-in-out| cubic-bezier(0.42,0,0.58,1) ;;
+                -webkit-transition: -webkit-transform 1s  linear;
                 .transform-img {
                     position: absolute;
                     width: 80px;

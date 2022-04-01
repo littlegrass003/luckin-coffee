@@ -41,6 +41,7 @@
     "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
     "postcss-px-scale": "^1.1.1",
+    "qrcodejs2": "^0.0.2",
     "taro-ui-vue": "^1.0.0-alpha.5",
     "vue": "^2.5.0",
     "vue-template-compiler": "^2.5.0"

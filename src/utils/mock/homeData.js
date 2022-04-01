@@ -200,17 +200,17 @@ const homeData = [
     quanyiArr: [{
       quanyi_id: 1,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi1.png',
-      value: '会员专享'
+      value: '1组第1'
     },
     {
       quanyi_id: 2,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi2.png',
-      value: '单单返现'
+      value: '1组第2'
     },
     {
       quanyi_id: 3,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi3.png',
-      value: '一小时达'
+      value: '1组第3'
     },
     {
       quanyi_id: 4,
@@ -247,17 +247,17 @@ const homeData = [
     quanyiArr: [{
       quanyi_id: 1,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi1.png',
-      value: '会员专享'
+      value: '2组第1'
     },
     {
       quanyi_id: 2,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi2.png',
-      value: '单单返现'
+      value: '2组第2'
     },
     {
       quanyi_id: 3,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi3.png',
-      value: '一小时达'
+      value: '2组第3'
     },
     {
       quanyi_id: 4,
@@ -294,42 +294,22 @@ const homeData = [
     quanyiArr: [{
       quanyi_id: 1,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi1.png',
-      value: '会员专享'
+      value: '3组第1'
     },
     {
       quanyi_id: 2,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi2.png',
-      value: '单单返现'
+      value: '3组第2'
     },
     {
       quanyi_id: 3,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi3.png',
-      value: '一小时达'
+      value: '3组第3'
     },
     {
       quanyi_id: 4,
       imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi4.png',
       value: '积分加倍'
-    },
-    {
-      quanyi_id: 5,
-      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi5.png',
-      value: '超级会员'
-    },
-    {
-      quanyi_id: 6,
-      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi6.png',
-      value: '开店赚钱'
-    },
-    {
-      quanyi_id: 7,
-      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi7.png',
-      value: '专属客服'
-    },
-    {
-      quanyi_id: 8,
-      imgUrl: 'http://zk4bucket.oss-cn-beijing.aliyuncs.com/hai-chang/wechat/card/quanyi8.png',
-      value: '敬请期待'
     }]
   },
 ]

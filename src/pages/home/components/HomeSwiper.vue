@@ -1,32 +1,35 @@
 <template>
   <div class="home-swiper-container" @click="onClickCardDetail">
-    <swiper class="swiper" :previous-margin="24" :next-margin="24" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="false" :indicator-dots="false" @change="onClickSwiperChange" @animationfinish="onClickSwiperFinish">
-      <!-- @transition="onClickSwiperTransition" -->
-      <swiper-item v-for="(item, index) in cardData" :key="index" class='card'>
-        <div class="card-top" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
-          <div class="card-title">{{item.card_name}}</div>
-          <div class="card-info">
-            <div class="card-info-title">{{item.card_number}}</div>
-            <div class="card-info-bottom">
-              <div class="card-info-prompt">
-                <div>VALID</div>
-                <div>THRU</div>
+    <swiper class="swiper" :previous-margin="24" :next-margin="24" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="false" :indicator-dots="false" @change="onClickSwiperChange">
+      <!-- <view catchMove> -->
+        <swiper-item v-for="(item, index) in cardData" :key="index" class="card" :item-id="index">
+          <div :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-top']" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
+            <div class="card-title">{{item.card_name}}</div>
+            <div class="card-info">
+              <div class="card-info-title">{{item.card_number}}</div>
+              <div class="card-info-bottom">
+                <div class="card-info-prompt">
+                  <div>VALID</div>
+                  <div>THRU</div>
+                </div>
+                <div class="card-info-time">{{item.card_time}}</div>
               </div>
-              <div class="card-info-time">{{item.card_time}}</div>
             </div>
           </div>
-        </div>
-        <!-- <image class="card-qrcode" mode="aspectFill" src="@/assets/image/card/qrcode.png" @click="onClickQrCode" /> -->
 
-        <div class="card-bottom" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
-          <div class="quanyi-item" v-for="(quanyiItem) in item.quanyiArr" :key="quanyiItem.quanyi_id">
-            <div class="quanyi-scroll">
-              <img class="quanyi-item-img" :src="quanyiItem.imgUrl" alt="">
-              <div class="quanyi-item-title">{{quanyiItem.value}}</div>
+          <!-- <image class="card-qrcode" mode="aspectFill" src="@/assets/image/card/qrcode.png" @click="onClickQrCode" /> -->
+
+          <view catchMove :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-bottom']" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
+            <!-- 这一层必须用view taro给view添加了catchmove事件 以用来防止事件穿透 -->
+            <div class="quanyi-view" v-for="(quanyiItem) in item.quanyiArr" :key="quanyiItem.quanyi_id">
+              <div class="quanyi-item">
+                <img class="quanyi-item-img" :src="quanyiItem.imgUrl" alt="">
+                <div class="quanyi-item-title">{{quanyiItem.value}}</div>
+              </div>
             </div>
-          </div>
-        </div>
-      </swiper-item>
+          </view>
+        </swiper-item>
+      <!-- </view> -->
     </swiper>
   </div>
 </template>
@@ -65,14 +68,9 @@ export default {
         },
         onClickSwiperChange(e) {
             console.log('changeCurrent ==> ', e)
-            console.log('currentIndex ==> ', e.detail.current)
+            console.log('e.detail.current ==> ', e.detail.current)
             this.currentIndex = e.detail.current
-        },
-        onClickSwiperTransition(dx, dy) {
-            console.log('Transition==>', dx, dy)
-        },
-        onClickSwiperFinish(dxy) {
-            console.log('finishDXY==>', dxy)
+            console.log('this.currentIndex ==> ', this.currentIndex)
         }
     }
 }
@@ -87,6 +85,18 @@ export default {
         .card {
             position: relative;
             border-radius: 20px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            .scale-current {
+                -webkit-transition: -webkit-transform 0.3s linear;
+                transform: scale(1);
+            }
+            .scale-normal {
+                border-radius: 20px;
+                // margin: 0 50px;
+                transform: scale(0.9);
+                -webkit-transition: -webkit-transform 0.3s linear;
+            }
             .card-top {
                 width: 90%;
                 z-index: 10;
@@ -145,13 +155,16 @@ export default {
                 height: 307px;
                 overflow-x: scroll;
                 overflow-y: none;
+                flex-wrap: nowrap;
                 display: flex;
-                justify-content: space-between;
-                .quanyi-item {
-                    align-items: center;
-                    .quanyi-scroll {
-                        padding: 100px 0 34px;
-                        width: 200px;
+                .quanyi-view {
+                    padding: 120px 60px 0 0;
+                    .quanyi-item {
+                        // background-color: red;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100px;
                         .quanyi-item-img {
                             width: 70px;
                             height: 70px;
@@ -162,6 +175,12 @@ export default {
                             color: #000000;
                         }
                     }
+                }
+                .quanyi-view:nth-of-type(1) {
+                    padding-left: 40px;
+                }
+                .quanyi-view:last-child {
+                    padding-right: 40px;
                 }
             }
         }

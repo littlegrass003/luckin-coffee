@@ -3,14 +3,14 @@
     <div class="navigation" :style="{height:navHeight + 'px'}"></div>
     <div class="home-top">
       <div v-if="userInfo.avatar" class="home-userinfo">
-        <img @click="gotoAuthorization" class="home-top-icon" :src="userInfo.avatar" alt="">
+        <img class="home-top-icon" :src="userInfo.avatar" alt="">
         <div class="home-top-right">
           <span class="home-top-name" @click="onClickName">{{userInfo.nickname}}</span>
           <img class="home-top-shiming" src="@/assets/image/home/yi-shiming.png" alt="">
         </div>
       </div>
       <div v-else class="home-userinfo">
-        <img @click="gotoAuthorization" class="home-top-icon" src="../../../assets/image/home/icon.png" alt="">
+        <img class="home-top-icon" src="@/assets/image/login/normal_icon.png" alt="">
         <div class="home-top-right">
           <span class="home-top-name" @click="onClickName">登录/注册</span>
           <img class="home-top-shiming" src="@/assets/image/home/no-shiming.png" alt="">
@@ -48,9 +48,9 @@ export default {
             })
         },
         gotoAuthorization() {
-            directTo({
-                url: '/pages/subPackages/authorization/authorization'
-            })
+            // directTo({
+            //     url: '/pages/subPackages/authorization/authorization'
+            // })
         }
     }
 }
@@ -90,7 +90,8 @@ export default {
             .home-top-name {
                 color: #fff;
                 margin-left: 30px;
-                font-size: 48px;
+                font-size: 36px;
+                font-weight: 500;
             }
         }
     }

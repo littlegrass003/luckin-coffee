@@ -5,25 +5,26 @@
         <div class="title">头像</div>
         <div class="right">
           <img class="icon" :src="userInfo.avatar" alt="">
-          <img class="arrow" src="@/assets/image/global/arrow-right.png" alt="">
+        </div>
+      </div>
+      <div class="top-name">
+        <div class="title">昵称</div>
+        <div class="right">
+          <span>{{userInfo.nickname}}</span>
         </div>
       </div>
       <div class="bottom">
-        <div class="item">
-          <div class="item-title">昵称</div>
-          <div class="item-line"></div>
-        </div>
         <div class="item">
           <div class="item-title">邮箱</div>
           <div class="item-line"></div>
         </div>
         <div class="item">
           <div class="item-title">城市</div>
-          <div class="item-address-line"></div>
+          <div class="item-line"></div>
           <img class="item-xia-img" src="@/assets/image/global/arrow_xia.png" alt="">
         </div>
         <div class="item">
-            请填写详细地址
+          <div class="item-title">地址</div>
           <div class="item-line"></div>
         </div>
       </div>
@@ -64,17 +65,44 @@ export default {
         width: 100%;
         border-radius: 20px;
         height: calc(100vh - 80px);
+
+        .top-name{
+          background-color: #fff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 48px 20px 32px;
+            // height: 134px;
+            .title {
+                font-size: 32px;
+                color: #000000;
+            }
+            .right {
+                display: flex;
+                align-items: center;
+                .icon {
+                    width: 88px;
+                    height: 88px;
+                    border-radius: 50%;
+                }
+                .arrow {
+                    margin-left: 26px;
+                    width: 16px;
+                    height: 30px;
+                }
+            }
+        }
         .top {
             background-color: #fff;
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0px 48px 0px 32px;
-            height: 134px;
+            padding: 22px 48px 10px 32px;
+            // height: 134px;
             .title {
-                font-size: 36px;
-                font-weight: 500;
+                font-size: 32px;
                 color: #000000;
             }
             .right {
@@ -100,6 +128,7 @@ export default {
                 display: flex;
                 justify-content: space-between;
                 padding: 30px 48px 30px 30px;
+                align-items: center;
                 .item-title {
                     font-size: 32px;
                     font-weight: 400;
@@ -109,7 +138,7 @@ export default {
                     width: 16px;
                     height: 30px;
                 }
-                .item-xia-img{
+                .item-xia-img {
                     width: 30px;
                     height: 16px;
                 }

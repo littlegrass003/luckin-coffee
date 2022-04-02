@@ -8,22 +8,43 @@
         <div class="code">核销码：0782739373920</div>
       </div>
       <div class="card">
-        <div class="title">关联会员卡信息</div>
-        <div class="card-content">
-          <div class="left">
-            <img class="left-img" src="@/assets/image/tempImg/coupon_small.png" alt="">
-          </div>
-          <div class="right">
-            <div class="right-title">海豚卡</div>
-            <div>
-              <div>1141 5678 9022 3277</div>
-              <div>2019/3/8-2020/3/9</div>
+        <div class="title">会员卡信息</div>
+        <div class="card-bottom">
+          <div class="card-content">
+            <div class="left">
+              <img class="left-img" src="@/assets/image/tempImg/coupon_small.png" alt="">
+            </div>
+            <div class="right">
+              <div class="right-title">海豚卡</div>
+              <div>
+                <div>1141 5678 9022 3277</div>
+                <div>2019/3/8-2020/3/9</div>
+              </div>
             </div>
           </div>
+          <div class="person-class" v-for="(item,index) in personInfo" :key="index">
+            <div class="name">{{item.name}}</div>
+            <div class="card-num">{{item.cardNum}}</div>
+          </div>
         </div>
-        <div class="person-class" v-for="(item,index) in personInfo" :key="index">
-          <div class="name">{{item.name}}</div>
-          <div class="card-num">{{item.cardNum}}</div>
+
+        <div class="card-bottom">
+          <div class="card-content">
+            <div class="left">
+              <img class="left-img" src="@/assets/image/tempImg/coupon_small.png" alt="">
+            </div>
+            <div class="right">
+              <div class="right-title">海豚卡</div>
+              <div>
+                <div>1141 5678 9022 3277</div>
+                <div>2019/3/8-2020/3/9</div>
+              </div>
+            </div>
+          </div>
+          <div class="person-class" v-for="(item,index) in personInfo" :key="index">
+            <div class="name">{{item.name}}</div>
+            <div class="card-num">{{item.cardNum}}</div>
+          </div>
         </div>
       </div>
       <div class="instructions">
@@ -52,10 +73,6 @@ export default {
                 },
                 {
                     name: '555',
-                    cardNum: 211282196104057836
-                },
-                {
-                    name: '1111',
                     cardNum: 211282196104057836
                 }
             ],
@@ -97,7 +114,7 @@ export default {
     .one {
         padding: 32px 60px;
         border-radius: 20px;
-        height: calc(100vh - 160px);
+        // height: calc(100vh - 160px);
         background: rgba(255, 255, 255, 0.4);
         .code-info {
             display: flex;
@@ -140,7 +157,12 @@ export default {
             padding: 14px 20px 16px;
             display: flex;
             flex-direction: column;
-            text-align: center;
+            .card-bottom {
+                border-bottom: 1px dashed #e3e3e3;
+            }
+            .card-bottom:last-child {
+                border-bottom: none;
+            }
             .title {
                 font-size: 24px;
                 font-weight: 500;
@@ -149,12 +171,11 @@ export default {
             .card-content {
                 margin-top: 16px;
                 display: flex;
-                border-bottom: 1px dashed #e3e3e3;
                 padding-bottom: 16px;
                 .left {
                     width: 240px;
                     height: 140px;
-                    margin-right: 48px;
+                    margin-right: 28px;
                     .left-img {
                         width: 100%;
                         height: 100%;
@@ -164,7 +185,7 @@ export default {
                     font-size: 24px;
                     display: flex;
                     flex-direction: column;
-                    text-align: right;
+                    // text-align: right;
                     .right-title {
                         margin-bottom: 40px;
                     }
@@ -172,6 +193,7 @@ export default {
             }
             .person-class {
                 margin-top: 12px;
+                margin-bottom: 12px;
                 display: flex;
                 justify-content: space-between;
                 font-size: 24px;
@@ -179,7 +201,10 @@ export default {
             }
         }
         .instructions {
+            background-color: #fff;
             margin-top: 30px;
+            border-radius: 20px;
+            padding: 28px 40px 32px;
             .title {
                 font-size: 28px;
                 font-weight: 500;

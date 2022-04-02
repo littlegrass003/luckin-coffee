@@ -1,9 +1,42 @@
 <template>
-  <div class="home-swiper-container" @click="onClickCardDetail">
-    <swiper class="swiper" :previous-margin="24" :next-margin="24" indicatorColor="#999" indicatorActiveColor="#fb8c00" current="0" :duration="500" :interval="2000" :circular="true" :autoplay="false" :indicator-dots="false" @change="onClickSwiperChange">
-      <!-- <view catchMove> -->
+  <div class="home-swiper-container">
+    <div v-if="cardData.length > 1">
+      <swiper class="swiper" :previous-margin="24" :next-margin="24" indicatorColor="#999" indicatorActiveColor="#fb8c00" :current="currentIndex" :duration="500" :interval="2000" :circular="true" :autoplay="false" :indicator-dots="false" @change="onClickSwiperChange">
+
         <swiper-item v-for="(item, index) in cardData" :key="index" class="card" :item-id="index">
-          <div :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-top']" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
+          <view catchMove :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-top']" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
+            <div class="card-title">{{item.card_name}}</div>
+            <div class="card-info">
+              <div class="card-info-title">{{item.card_number}}</div>
+              <div class="card-info-bottom">
+                <div class="card-info-prompt">
+                  <div>VALID</div>
+                  <div>THRU</div>
+                </div>
+                <div class="card-info-time">{{item.card_time}}</div>
+              </div>
+            </div>
+          </view>
+
+          <!-- <image class="card-qrcode" mode="aspectFill" src="@/assets/image/card/qrcode.png" @click="onClickQrCode" /> -->
+
+          <div @click="onClickCardDetail" :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-bottom']" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
+            <!-- 这一层必须用view taro给view添加了catchmove事件 以用来防止事件穿透 -->
+            <div class="quanyi-view" v-for="(quanyiItem) in item.quanyiArr" :key="quanyiItem.quanyi_id">
+              <div class="quanyi-item">
+                <img class="quanyi-item-img" :src="quanyiItem.imgUrl" alt="">
+                <div class="quanyi-item-title">{{quanyiItem.value}}</div>
+              </div>
+            </div>
+          </div>
+        </swiper-item>
+      </swiper>
+    </div>
+
+    <div v-else>
+      <div class="swiper">
+        <div class="card" v-for="(item, index) in cardData" :key="index">
+          <div class="card-top" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
             <div class="card-title">{{item.card_name}}</div>
             <div class="card-info">
               <div class="card-info-title">{{item.card_number}}</div>
@@ -19,7 +52,7 @@
 
           <!-- <image class="card-qrcode" mode="aspectFill" src="@/assets/image/card/qrcode.png" @click="onClickQrCode" /> -->
 
-          <view catchMove :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-bottom']" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
+          <div @click="onClickCardDetail" class="card-bottom" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
             <!-- 这一层必须用view taro给view添加了catchmove事件 以用来防止事件穿透 -->
             <div class="quanyi-view" v-for="(quanyiItem) in item.quanyiArr" :key="quanyiItem.quanyi_id">
               <div class="quanyi-item">
@@ -27,10 +60,14 @@
                 <div class="quanyi-item-title">{{quanyiItem.value}}</div>
               </div>
             </div>
-          </view>
-        </swiper-item>
-      <!-- </view> -->
-    </swiper>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="custom">
+      <div @click="jianSwiper">左边</div>
+      <div @click="jiaSwiper">右边</div>
+    </div>
   </div>
 </template>
 
@@ -54,6 +91,20 @@ export default {
         }
     },
     methods: {
+        jianSwiper() {
+            if (this.currentIndex == 0) {
+                this.currentIndex = this.cardData.length - 1
+            } else {
+                this.currentIndex = this.currentIndex - 1
+            }
+        },
+        jiaSwiper() {
+            if (this.currentIndex == this.cardData.length - 1) {
+                this.currentIndex = 0
+            } else {
+                this.currentIndex = this.currentIndex + 1
+            }
+        },
         onClickCardDetail() {
             directTo({
                 url: '/pages/subPackages/cardDetail/cardDetail'
@@ -67,10 +118,7 @@ export default {
             })
         },
         onClickSwiperChange(e) {
-            console.log('changeCurrent ==> ', e)
-            console.log('e.detail.current ==> ', e.detail.current)
             this.currentIndex = e.detail.current
-            console.log('this.currentIndex ==> ', this.currentIndex)
         }
     }
 }
@@ -185,5 +233,15 @@ export default {
             }
         }
     }
+    .custom {
+        display: flex;
+        justify-content: space-around;
+        font-size: 40px;
+    }
 }
 </style>
+
+    
+    
+    
+    

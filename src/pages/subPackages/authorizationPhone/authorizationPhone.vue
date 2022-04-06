@@ -40,13 +40,12 @@ export default {
                     encryptedData: e.detail.encryptedData,
                     iv: e.detail.iv
                 }
-                console.log('phone-code', params.code)
                 const res = await request({
                     method: 'POST',
                     url: '/wechat/auth/mp/getUserPhoneNumber',
                     data: {
                         code: params.code
-                    }
+                    },
                 })
                 if (res.code == 0) {
                     this.registerAccount(res.data.phoneNumber)
@@ -66,11 +65,9 @@ export default {
             })
             const userInfo = Taro.getStorageSync('wechat_userInfo')
             const openId = Taro.getStorageSync('wechat_openId')
-            console.log('userInfo==>', userInfo)
-            console.log('openId==>', openId)
             const res = await request({
                 method: 'POST',
-                url: '/member/auth/user/createUser',
+                url: '/member/auth/c/user/createUser',
                 data: {
                     avatar: userInfo.avatarUrl,
                     nickname: userInfo.nickName,
@@ -83,6 +80,7 @@ export default {
                     sessionToken: res.data.sessionToken,
                     userToken: res.data.userToken
                 }
+                console.log('phone是否有memberid==>', res.data.hasOwnProperty('memberId'))
                 Taro.setStorageSync('wechat_token', token)
                 Taro.hideLoading()
                 Taro.showToast({

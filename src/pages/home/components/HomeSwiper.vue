@@ -4,16 +4,17 @@
       <swiper class="swiper" :previous-margin="24" :next-margin="24" indicatorColor="#999" indicatorActiveColor="#fb8c00" :current="currentIndex" :duration="500" :interval="2000" :circular="true" :autoplay="false" :indicator-dots="false" @change="onClickSwiperChange">
 
         <swiper-item v-for="(item, index) in cardData" :key="index" class="card" :item-id="index">
-          <view catchMove :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-top']" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
-            <div class="card-title">{{item.card_name}}</div>
+          <!-- catchMove -->
+          <view :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-top']" :style="{ background: 'no-repeat url(' + item.cardCoverImg + ')', backgroundSize:'100% 100%'}">
+            <div class="card-title">{{item.cardName}}</div>
             <div class="card-info">
-              <div class="card-info-title">{{item.card_number}}</div>
+              <div class="card-info-title">{{item.outTradeCardInstanceShowNo}}</div>
               <div class="card-info-bottom">
                 <div class="card-info-prompt">
                   <div>VALID</div>
                   <div>THRU</div>
                 </div>
-                <div class="card-info-time">{{item.card_time}}</div>
+                <div class="card-info-time">{{item.validEndDate}}</div>
               </div>
             </div>
           </view>
@@ -34,7 +35,7 @@
     </div>
 
     <div v-else>
-      <div class="swiper">
+      <div class="single">
         <div class="card" v-for="(item, index) in cardData" :key="index">
           <div class="card-top" :style="{ background: 'no-repeat url(' + item.card_img + ')', backgroundSize:'100% 100%'}">
             <div class="card-title">{{item.card_name}}</div>
@@ -64,10 +65,10 @@
         </div>
       </div>
     </div>
-    <div class="custom">
+    <!-- <div class="custom">
       <div @click="jianSwiper">左边</div>
       <div @click="jiaSwiper">右边</div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -237,6 +238,102 @@ export default {
         display: flex;
         justify-content: space-around;
         font-size: 40px;
+    }
+    .single {
+        height: 532px;
+        .card {
+            position: relative;
+            border-radius: 20px;
+            .card-top {
+                // width: 90%;
+                width: 83%;
+                z-index: 10;
+                // margin: 0 19px;
+                margin: 0 50px;
+                position: absolute;
+                border-radius: 20px;
+                height: 364px;
+                top: 0px;
+                left: 0px;
+                padding: 40px 0 0 36px;
+                .card-title {
+                    font-size: 48px;
+                    font-weight: 600;
+                    color: #fff;
+                }
+                .card-info {
+                    margin-top: 56px;
+                    .card-info-title {
+                        font-size: 24px;
+                        color: #ffffff;
+                        letter-spacing: 1px;
+                    }
+                    .card-info-bottom {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 20px;
+                        .card-info-prompt {
+                            display: flex;
+                            flex-direction: column;
+                            font-size: 12px;
+                            color: #cfcfcf;
+                            margin-right: 12px;
+                        }
+                        .card-info-time {
+                            font-size: 24px;
+                            color: #ffffff;
+                            letter-spacing: 1px;
+                        }
+                    }
+                }
+            }
+            .card-qrcode {
+                z-index: 30;
+                position: absolute;
+                width: 98px;
+                height: 118px;
+                top: 0px;
+                right: 96px;
+            }
+            .card-bottom {
+                position: absolute;
+                z-index: 20;
+                bottom: -520px;
+                left: 32px;
+                right: 32px;
+                width: 92%;
+                height: 250px;
+                overflow-x: scroll;
+                overflow-y: none;
+                flex-wrap: nowrap;
+                display: flex;
+                .quanyi-view {
+                    padding: 108px 60px 0 0;
+                    .quanyi-item {
+                        // background-color: red;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100px;
+                        .quanyi-item-img {
+                            width: 70px;
+                            height: 70px;
+                        }
+                        .quanyi-item-title {
+                            margin-top: 10px;
+                            font-size: 24px;
+                            color: #000000;
+                        }
+                    }
+                }
+                .quanyi-view:nth-of-type(1) {
+                    padding-left: 50px;
+                }
+                .quanyi-view:last-child {
+                    padding-right: 50px;
+                }
+            }
+        }
     }
 }
 </style>

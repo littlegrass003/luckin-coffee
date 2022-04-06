@@ -105,21 +105,21 @@ export default {
             }
         },
 
-        async testServer(openId){
+        async testServer(openId) {
             Taro.showLoading()
             const res = await request({
                 method: 'POST',
-                url:'/member/auth/user/checkUser',
+                url: '/member/auth/user/checkUser',
                 data: { openId: openId },
-                header:{
-                    'content-type':'application/x-www-form-urlencoded',
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded'
                 }
             })
             Taro.hideLoading()
             Taro.showToast({
-                title:res.message,
-                icon:'none',
-                mask:'true'
+                title: res.message,
+                icon: 'none',
+                mask: 'true'
             })
             console.log('testServer==>', res)
         },
@@ -131,7 +131,7 @@ export default {
             })
             const res = await request({
                 method: 'POST',
-                url: '/member/auth/user/login',
+                url: '/member/auth/c/user/login',
                 data: { openId: openId }
             })
             if (res.code == 0) {
@@ -139,6 +139,11 @@ export default {
                     sessionToken: res.data.sessionToken,
                     userToken: res.data.userToken
                 }
+                console.log('是否有memberid==>', res.data.hasOwnProperty('memberId'))
+                const memberId = res.data.hasOwnProperty('memberId') ? res.data.memberId : false
+                const userInfo = res.data.userResult
+                Taro.setStorageSync('user_info', userInfo)
+                Taro.setStorageSync('member_id', memberId)
                 Taro.setStorageSync('wechat_token', token)
                 Taro.hideLoading()
                 Taro.showToast({
@@ -152,7 +157,7 @@ export default {
                         url: '/pages/home/home'
                     })
                 }, 1500)
-            } else {
+            } else if (res.code == 40003) {
                 Taro.hideLoading()
                 Taro.showToast({
                     title: res.message,
@@ -161,6 +166,13 @@ export default {
                 })
                 directTo({
                     url: '/pages/subPackages/authorizationPhone/authorizationPhone'
+                })
+            } else {
+                Taro.hideLoading()
+                Taro.showToast({
+                    title: res.message,
+                    icon: 'none',
+                    mask: true
                 })
             }
         },

@@ -5,14 +5,18 @@
       <div v-if="userInfo.avatar" class="home-userinfo">
         <img class="home-top-icon" :src="userInfo.avatar" alt="">
         <div class="home-top-right">
+          <!-- <span class="home-top-name" @click="onClickName">{{userInfo.nickname}}</span> -->
           <span class="home-top-name" @click="onClickName">{{userInfo.nickname}}</span>
-          <img class="home-top-shiming" src="@/assets/image/home/yi-shiming.png" alt="">
+          <img v-if="!member_id" class="home-top-shiming" src="@/assets/image/home/no-shiming.png" alt="">
+          <img v-else class="home-top-shiming" src="@/assets/image/home/yi-shiming.png" alt="">
+          
         </div>
       </div>
       <div v-else class="home-userinfo">
         <img class="home-top-icon" src="@/assets/image/login/normal_icon.png" alt="">
         <div class="home-top-right">
-          <span class="home-top-name" @click="onClickName">登录/注册</span>
+          <span class="home-top-name">登录/注册</span>
+          <!-- <span class="home-top-name" @click="onClickName">登录/注册</span> -->
           <img class="home-top-shiming" src="@/assets/image/home/no-shiming.png" alt="">
         </div>
       </div>
@@ -34,12 +38,15 @@ export default {
             navHeight: navStatusBarHeight,
             token: {},
             userInfo: {},
-            backgroundImg: OSS_URL + '/home/bgc.png'
+            backgroundImg: OSS_URL + '/home/bgc.png',
+            member_id:''
         }
     },
     mounted() {
         this.token = Taro.getStorageSync('wechat_token')
         this.userInfo = Taro.getStorageSync('wechat_userInfo')
+        this.member_id = Taro.getStorageSync('member_id')
+        console.log('this.member_id000==>', this.member_id)
     },
     methods: {
         onClickName() {

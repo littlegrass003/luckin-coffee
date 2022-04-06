@@ -8,11 +8,11 @@
       </div>
     </div>
     <div class="bottom">
-      <div class="item">
+      <!-- <div class="item">
         <div class="item-title">账号绑定设置</div>
         <img class="item-img" src="@/assets/image/global/arrow-right.png" alt="">
         <div class="item-line"></div>
-      </div>
+      </div> -->
       <div class="item" @click="onClickShimingrenzheng">
         <div class="item-title">实名认证</div>
         <img class="item-img" src="@/assets/image/global/arrow-right.png" alt="">

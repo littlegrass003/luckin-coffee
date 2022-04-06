@@ -5,23 +5,24 @@
 
         <swiper-item v-for="(item, index) in cardData" :key="index" class="card" :item-id="index">
           <!-- catchMove -->
-          <view :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-top']" :style="{ background: 'no-repeat url(' + item.cardCoverImg + ')', backgroundSize:'100% 100%'}">
-            <div class="card-title">{{item.cardName}}</div>
+          <view @click="onClickSwiperItem(item)" :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-top']" :style="{ background: 'no-repeat url(' + item.cardCoverImg + ')', backgroundSize:'100% 100%'}">
+            <div class="card-title">{{item.cardName ? item.cardName : '没有卡名'}}</div>
             <div class="card-info">
-              <div class="card-info-title">{{item.outTradeCardInstanceShowNo}}</div>
+              <div class="card-info-title">{{item.outTradeCardInstanceShowNo ? item.outTradeCardInstanceShowNo : '没有卡号'}}</div>
               <div class="card-info-bottom">
                 <div class="card-info-prompt">
                   <div>VALID</div>
                   <div>THRU</div>
                 </div>
-                <div class="card-info-time">{{item.validEndDate}}</div>
+                
+                <div class="card-info-time">{{item.validEndDate ? item.validEndDate.split(' ')[0] : '没有时间'}}</div>
               </div>
             </div>
           </view>
 
           <!-- <image class="card-qrcode" mode="aspectFill" src="@/assets/image/card/qrcode.png" @click="onClickQrCode" /> -->
 
-          <div @click="onClickCardDetail" :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-bottom']" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
+          <div @click="onClickSwiperItem(item)" :class="[currentIndex == index ? 'scale-current' : 'scale-normal', 'card-bottom']" :style="{ background: 'no-repeat url(' + backgroundImg + ')', backgroundSize:'100% 100%'}">
             <!-- 这一层必须用view taro给view添加了catchmove事件 以用来防止事件穿透 -->
             <div class="quanyi-view" v-for="(quanyiItem) in item.quanyiArr" :key="quanyiItem.quanyi_id">
               <div class="quanyi-item">
@@ -120,6 +121,15 @@ export default {
         },
         onClickSwiperChange(e) {
             this.currentIndex = e.detail.current
+        },
+        onClickSwiperItem(e) {
+            directTo({
+                url: '/pages/subPackages/cardDetail/cardDetail',
+                query: {
+                    requestID: e.id
+                }
+            })
+            console.log(e.id)
         }
     }
 }

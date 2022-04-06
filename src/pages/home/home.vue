@@ -70,11 +70,8 @@ export default {
         } else if (!memberId) {
             this.judgeShowPage = 1
         } else if (memberId) {
-            this.judgeShowPage = 2
-        } else {
-            this.judgeShowPage = 3
+            this.initData()
         }
-        this.initData()
     },
     methods: {
         async initData() {
@@ -88,13 +85,25 @@ export default {
                 }
             })
             if (res.code == 0) {
+                this.judgeShowPage = 3
                 this.cardList = res.data.cardsByMbrIdResults
             } else {
+                this.judgeShowPage = 2
                 Taro.showToast({
                     title: res.message,
                     icon: 'none'
                 })
             }
+        },
+        async getInterestList() {
+            const res = await request({
+                method: 'POST',
+                url: '/interest/c/cardInterest/getList',
+                data: {
+                    cardId:''
+                }
+            })
+            console.log(res)
         },
         onClickLogin() {
             directTo({
